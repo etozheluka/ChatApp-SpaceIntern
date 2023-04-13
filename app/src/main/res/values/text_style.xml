@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="BasicTextSetting" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">#191919</item>
+        <item name="android:textColor">@color/textMainColor</item>
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/myriad_geo</item>
     </style>
