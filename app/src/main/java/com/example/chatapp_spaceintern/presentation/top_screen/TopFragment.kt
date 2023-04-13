@@ -7,7 +7,5 @@ import com.example.chatapp_spaceintern.presentation.base.BaseFragment
 class TopFragment : BaseFragment<FragmentTopBinding>(FragmentTopBinding::inflate) {
 
     private val viewModel: TopViewModel by viewModels()
-    override fun onBind() {
-
-    }
+    override fun onBind() {}
 }

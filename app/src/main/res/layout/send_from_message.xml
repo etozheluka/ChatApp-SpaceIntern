@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
@@ -30,8 +29,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="გამარჯობა, ჯემალი" />
-
-
     </LinearLayout>
 
     <ImageView
@@ -53,5 +50,4 @@
         app:layout_constraintStart_toEndOf="@+id/rectangleImageView"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:text="მარ 14,16:05" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
