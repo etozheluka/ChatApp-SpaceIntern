@@ -7,55 +7,51 @@
 
 
     <LinearLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/sendfrom1"
+        android:background="@drawable/send_from_rectangle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/sendFromTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="18dp"
             android:layout_marginBottom="15dp"
-            android:fontFamily="@font/myriad_geo"
-            android:text="@string/sample_text"
-            android:textColor="#191919"
-            android:textSize="14sp"
+            style="@style/BasicTextSetting"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            tools:text="გამარჯობა, ჯემალი" />
 
 
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/rectangleImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-10dp"
-        android:src="@drawable/sendfrom2"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        android:src="@drawable/send_from_rectangle_bubble"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout" />
 
     <TextView
+        android:id="@+id/dateTextViewFrom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:fontFamily="@font/myriad_geo"
-        android:text="@string/sample_date"
+        tools:text="მარ 14,16:05"
         android:textColor="#C7C7C7"
         android:textSize="8sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintStart_toEndOf="@+id/rectangleImageView"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

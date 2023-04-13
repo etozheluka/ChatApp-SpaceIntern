@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Chat App - Space Intern</string>
     <string name="enter_your_text">დაწერე შეტყობინება...</string>
-    <string name="sample_date">მარ 14,16:05</string>
-    <string name="sample_text">გამარჯობა,ზეზვა</string>
+
 </resources>

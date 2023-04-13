@@ -7,7 +7,7 @@
 
     <FrameLayout
         android:layout_weight="1"
-        android:id="@+id/firstFragment"
+        android:id="@+id/topFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         />
@@ -19,7 +19,7 @@
 
     <FrameLayout
         android:layout_weight="1"
-        android:id="@+id/secondFragment"
+        android:id="@+id/bottomFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp" />
 </LinearLayout>

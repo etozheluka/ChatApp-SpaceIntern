@@ -2,14 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/secondFragment"
+    android:id="@+id/bottomFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.main.FirstFragment">
+    tools:context=".presentation.top_screen.TopFragment">
 
 
     <ImageView
-        android:id="@+id/message"
+        android:id="@+id/messageInputImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/inputview"
@@ -20,31 +20,33 @@
         app:layout_constraintVertical_bias="0.954" />
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/inputEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:background="@null"
         android:ems="12"
-        android:paddingStart="10dp"
-        android:layout_marginStart="10dp"
         android:hint="@string/enter_your_text"
-        app:layout_constraintBottom_toBottomOf="@+id/message"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        android:paddingStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/messageInputImageView"
+        app:layout_constraintEnd_toStartOf="@+id/imageBtnView"
         app:layout_constraintHorizontal_bias="0.109"
-        app:layout_constraintStart_toStartOf="@+id/message"
-        app:layout_constraintTop_toTopOf="@+id/message" />
+        app:layout_constraintStart_toStartOf="@+id/messageInputImageView"
+        app:layout_constraintTop_toTopOf="@+id/messageInputImageView" />
 
     <ImageButton
-        android:id="@+id/imageView"
+        android:id="@+id/imageBtnView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:foreground="?android:attr/selectableItemBackground"
         android:layout_marginEnd="16dp"
         android:background="@drawable/sendbtn"
-        app:layout_constraintEnd_toEndOf="@+id/message"
-        app:layout_constraintTop_toTopOf="@+id/message" />
+        android:foreground="?android:attr/selectableItemBackground"
+        app:layout_constraintEnd_toEndOf="@+id/messageInputImageView"
+        app:layout_constraintTop_toTopOf="@+id/messageInputImageView" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bottomRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
@@ -52,7 +54,7 @@
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/message"
+        app:layout_constraintBottom_toTopOf="@+id/messageInputImageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
