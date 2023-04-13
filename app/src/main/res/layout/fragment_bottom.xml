@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.top_screen.TopFragment">
 
-
     <ImageView
         android:id="@+id/messageInputImageView"
         android:layout_width="wrap_content"
@@ -59,6 +58,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/send_from_message" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
