@@ -6,20 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.chatapp_spaceintern.databinding.FragmentMainBinding
+import com.example.chatapp_spaceintern.databinding.FragmentFirstBinding
 
-class MainFragment : Fragment() {
+class FirstFragment : Fragment() {
 
-    private var _binding: FragmentMainBinding? = null
+    private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: FirstViewModel by viewModels()
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        _binding = FragmentFirstBinding.inflate(inflater, container, false)
         return binding.root
     }
 
