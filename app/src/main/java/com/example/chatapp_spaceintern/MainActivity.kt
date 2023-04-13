@@ -14,9 +14,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportFragmentManager.apply {
-            beginTransaction().replace(R.id.topFragment, TopFragment()).commit()
-            beginTransaction().replace(R.id.bottomFragment, BottomFragment()).commit()
+        supportFragmentManager.beginTransaction().apply {
+            replace(binding.topFragment.id, TopFragment())
+            replace(binding.bottomFragment.id, BottomFragment())
+                .commit()
         }
     }
 }
