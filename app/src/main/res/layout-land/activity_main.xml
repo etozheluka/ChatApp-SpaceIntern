@@ -19,24 +19,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/day_night_switch"
-            android:visibility="visible" />
+            android:layout_marginEnd="@dimen/dimen_20dp"
+            android:background="@drawable/day_night_switch" />
 
         <ImageView
             android:id="@+id/nightDaySwithcer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="@dimen/dimen_20dp"
             android:background="@drawable/night_day_switch"
             android:visibility="gone" />
     </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
         android:id="@+id/topFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="@dimen/dimen_0dp"
         android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/view"
@@ -45,7 +44,7 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="6dp"
+        android:layout_width="@dimen/dimen_6dp"
         android:layout_height="match_parent"
         android:background="@drawable/dividerline"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,8 +54,8 @@
 
     <FrameLayout
         android:id="@+id/bottomFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="@dimen/dimen_0dp"
         android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

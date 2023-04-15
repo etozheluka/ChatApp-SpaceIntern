@@ -8,8 +8,10 @@ import com.example.chatapp_spaceintern.presentation.base.Inflate
 class BottomFragment : BaseFragment<FragmentBottomBinding>() {
 
     private val viewModel: BottomViewModel by viewModels()
-    override fun onBind() {}
+
     override fun inflate(): Inflate<FragmentBottomBinding> {
         return FragmentBottomBinding::inflate
     }
+    override fun onBind() {}
+
 }
