@@ -5,44 +5,49 @@
     android:id="@+id/bottomFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.top_screen.TopFragment">
+    tools:context=".presentation.bottom_screen.BottomFragment">
 
-    <ImageView
-        android:id="@+id/messageInputImageView"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/inputview"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="30dp"
+        app:boxCornerRadiusBottomEnd="@dimen/radius"
+        app:boxCornerRadiusBottomStart="@dimen/radius"
+        app:boxCornerRadiusTopEnd="@dimen/radius"
+        app:boxCornerRadiusTopStart="@dimen/radius"
+        app:boxStrokeWidth="1dp"
+        app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.954" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/inputEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:background="@null"
-        android:ems="12"
-        android:hint="@string/enter_your_text"
-        android:paddingStart="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/messageInputImageView"
-        app:layout_constraintEnd_toStartOf="@+id/imageBtnView"
-        app:layout_constraintHorizontal_bias="0.109"
-        app:layout_constraintStart_toStartOf="@+id/messageInputImageView"
-        app:layout_constraintTop_toTopOf="@+id/messageInputImageView" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/enter_your_text"
+            android:maxLines="5"
+            android:paddingEnd="56dp"
+            android:scrollbarThumbVertical="@drawable/scrollbar_scroll"
+            android:scrollbarTrackVertical="@drawable/scrollbar_thing"
+            android:scrollbars="vertical"
+            android:textColorHint="@color/hintColor_grey" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageButton
         android:id="@+id/imageBtnView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/sendbtn"
         android:foreground="?android:attr/selectableItemBackground"
-        app:layout_constraintEnd_toEndOf="@+id/messageInputImageView"
-        app:layout_constraintTop_toTopOf="@+id/messageInputImageView" />
+        app:layout_constraintBottom_toBottomOf="@+id/inputLayout"
+        app:layout_constraintEnd_toEndOf="@+id/inputLayout"
+        app:layout_constraintTop_toTopOf="@+id/inputLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bottomRecycler"
@@ -51,11 +56,12 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/messageInputImageView"
+        app:layout_constraintBottom_toTopOf="@+id/inputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/send_from_message" />
+        app:reverseLayout="false"
+        app:stackFromEnd="true"
+        tools:listitem="@layout/send_to_message" />
 </androidx.constraintlayout.widget.ConstraintLayout>

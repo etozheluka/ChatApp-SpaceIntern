@@ -10,10 +10,10 @@ import androidx.viewbinding.ViewBinding
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
 abstract class BaseFragment<VB : ViewBinding>(
-    private val inflate: Inflate<VB>
 ) : Fragment() {
 
     private var _binding: VB? = null
+    abstract fun inflate(): Inflate<VB>
     protected val binding get() = _binding
 
     abstract fun onBind()
@@ -23,7 +23,7 @@ abstract class BaseFragment<VB : ViewBinding>(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = this.inflate.invoke(inflater, container, false)
+        _binding = this.inflate().invoke(inflater, container, false)
         return binding?.root
     }
 

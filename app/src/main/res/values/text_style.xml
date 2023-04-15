@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="BasicTextSetting" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/textMainColor</item>
-        <item name="android:textSize">14sp</item>
+    <style name="mediumMyriadGeo_Normal" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/eerie_black</item>
+        <item name="android:textSize">@dimen/mediumMyriadGeo_Normal_Text_Size</item>
         <item name="android:fontFamily">@font/myriad_geo</item>
     </style>
 </resources>
