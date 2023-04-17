@@ -18,8 +18,6 @@ class BottomFragment : BaseFragment<FragmentBottomBinding>() {
 
     private val viewModel by viewModel<SharedViewModel>()
 
-
-
     private val adapter by lazy {
         RecyclerAdapter(SENDER)
     }
