@@ -11,4 +11,5 @@
     <color name="dateBasicColor">#C7C7C7</color>
     <color name="darkTheme_dark_purple">#160039</color>
     <color name="hintColor_grey">#C7C7C7</color>
+    <color name="greyInputTextColor">#8C8A8A</color>
 </resources>

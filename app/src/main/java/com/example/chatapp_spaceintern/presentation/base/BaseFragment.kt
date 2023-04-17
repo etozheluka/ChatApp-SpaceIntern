@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.example.chatapp_spaceintern.domain.model.MessageModel
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
@@ -17,6 +18,9 @@ abstract class BaseFragment<VB : ViewBinding>(
     protected val binding get() = _binding
 
     abstract fun onBind()
+    abstract fun initRecycler()
+    abstract fun showMessages()
+    abstract fun sendMessage(messageModel: MessageModel)
 
     override fun onCreateView(
         inflater: LayoutInflater,

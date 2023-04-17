@@ -20,6 +20,7 @@
             style="@style/mediumMyriadGeo_Normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="@dimen/dimen_300dp"
             android:layout_marginStart="@dimen/dimen_18dp"
             android:layout_marginTop="@dimen/dimen_15dp"
             android:layout_marginEnd="@dimen/dimen_18dp"
