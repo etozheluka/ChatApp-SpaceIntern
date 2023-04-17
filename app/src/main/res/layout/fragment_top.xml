@@ -5,7 +5,7 @@
     android:id="@+id/topFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.top_screen.TopFragment">
+    tools:context=".presentation.ui.TopFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputLayout"
@@ -31,9 +31,7 @@
             android:hint="@string/enter_your_text"
             android:maxLines="5"
             android:paddingEnd="@dimen/dimen_56dp"
-            android:scrollbarThumbVertical="@drawable/scrollbar_scroll"
-            android:scrollbarTrackVertical="@drawable/scrollbar_thing"
-            android:scrollbars="vertical"
+            style="@style/InputBasicSetting"
             android:textColorHint="@color/hintColor_grey" />
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -4,6 +4,5 @@ data class MessageModel(
     val id:Int?,
     val sender: String?,
     val message: String?,
-    val time: String?,
-    val internet:Boolean?
+    val time: String?
 )

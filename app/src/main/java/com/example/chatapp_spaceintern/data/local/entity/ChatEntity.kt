@@ -18,6 +18,4 @@ data class ChatEntity (
     val message: String?,
     @ColumnInfo(name = "time")
     val time: String?,
-    @ColumnInfo(name = "internet")
-    val internet: Boolean?
 ):Parcelable

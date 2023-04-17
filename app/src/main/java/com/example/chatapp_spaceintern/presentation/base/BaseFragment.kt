@@ -21,6 +21,7 @@ abstract class BaseFragment<VB : ViewBinding>(
     abstract fun initRecycler()
     abstract fun showMessages()
     abstract fun sendMessage(messageModel: MessageModel)
+    abstract fun saveMessageModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,

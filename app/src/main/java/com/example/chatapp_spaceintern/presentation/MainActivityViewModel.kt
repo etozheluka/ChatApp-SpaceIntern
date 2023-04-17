@@ -7,10 +7,34 @@ import kotlinx.coroutines.launch
 
 class MainActivityViewModel( private val dayNightPreferencesUseCase: DayNightPreferencesUseCase):ViewModel() {
 
-    fun saveBoolean(dayMode:Boolean){
+    private fun saveBoolean(dayMode:Boolean){
         viewModelScope.launch {
             dayNightPreferencesUseCase.setMode(dayMode)
         }
     }
-    suspend fun getBoolean():Result<Boolean> = dayNightPreferencesUseCase.getMode()
+    private suspend fun getBoolean():Result<Boolean> = dayNightPreferencesUseCase.getMode()
+
+    fun dayNightHandling(dayNightMode:() ->Unit, nightDayMode:() ->Unit){
+        viewModelScope.launch {
+            val mode = getBoolean()
+            if (mode.getOrNull() == true) {
+                dayNightMode()
+                saveBoolean(false)
+            } else {
+                nightDayMode()
+                saveBoolean(true)
+            }
+        }
+    }
+
+     fun checkPreferencesStatus(nightDayMode:() ->Unit, dayNightMode:() ->Unit) {
+         viewModelScope.launch {
+            val mode = getBoolean()
+            if (mode.getOrNull() == true) {
+                nightDayMode()
+            } else {
+                dayNightMode()
+            }
+        }
+    }
 }

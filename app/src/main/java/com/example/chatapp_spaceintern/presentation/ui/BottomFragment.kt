@@ -29,22 +29,25 @@ class BottomFragment : BaseFragment<FragmentBottomBinding>() {
     override fun onBind() {
         initRecycler()
         binding?.imageBtnView?.setOnClickListener {
-            if (isNetworkAvailable(context)) {
-                sendMessage(
-                    MessageModel(
-                        id = null,
-                        sender = SENDER,
-                        message = binding?.inputEditText?.text.toString(),
-                        time = currentTime(),
-                        internet = true
-                    )
-                )
-            } else {
-                Toast.makeText(context, getString(R.string.check_internet), Toast.LENGTH_SHORT).show()
-            }
-
-            binding?.inputEditText?.text?.clear()
+            saveMessageModel()
         }
+    }
+
+    override fun saveMessageModel() {
+        if (isNetworkAvailable(context)) {
+            sendMessage(
+                MessageModel(
+                    id = null,
+                    sender = SENDER,
+                    message = binding?.inputEditText?.text.toString(),
+                    time = currentTime()
+                )
+            )
+        } else {
+            Toast.makeText(context, getString(R.string.check_internet), Toast.LENGTH_SHORT).show()
+        }
+
+        binding?.inputEditText?.text?.clear()
     }
 
     override fun sendMessage(messageModel: MessageModel) {
