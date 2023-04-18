@@ -4,11 +4,12 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.widget.Toast
 
-fun isNetworkAvailable(context: Context?): Boolean {
-    if (context == null) return false
+fun Context.isNetworkAvailable(): Boolean {
+    if (applicationContext == null) return false
     val connectivityManager =
-        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
         val capabilities =
             connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
@@ -32,4 +33,8 @@ fun isNetworkAvailable(context: Context?): Boolean {
         }
     }
     return false
+}
+
+fun Context.toastMessage(arg :String){
+    Toast.makeText(applicationContext, arg, Toast.LENGTH_SHORT).show()
 }

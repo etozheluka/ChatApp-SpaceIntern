@@ -69,9 +69,9 @@ class RecyclerAdapter(private val sender: String) :
         private lateinit var currentMessage: MessageModel
         fun bind() {
             currentMessage = getItem(adapterPosition)
-            binding.apply {
-                binding.sendToTextView.text = currentMessage.message
-                binding.dateTextViewTo.text = currentMessage.time
+            with(binding) {
+                sendToTextView.text = currentMessage.message
+                dateTextViewTo.text = currentMessage.time
             }
         }
     }
@@ -82,9 +82,9 @@ class RecyclerAdapter(private val sender: String) :
         private lateinit var currentMessage: MessageModel
         fun bind() {
             currentMessage = getItem(adapterPosition)
-            binding.apply {
-                binding.sendFromTextView.text = currentMessage.message
-                binding.dateTextViewFrom.text = currentMessage.time
+            with(binding) {
+                sendFromTextView.text = currentMessage.message
+                dateTextViewFrom.text = currentMessage.time
             }
         }
     }

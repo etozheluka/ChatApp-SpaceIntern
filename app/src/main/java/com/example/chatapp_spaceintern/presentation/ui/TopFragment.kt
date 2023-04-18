@@ -1,6 +1,5 @@
 package com.example.chatapp_spaceintern.presentation.ui
 
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.chatapp_spaceintern.R
 import com.example.chatapp_spaceintern.databinding.FragmentTopBinding
@@ -10,6 +9,7 @@ import com.example.chatapp_spaceintern.presentation.base.BaseFragment
 import com.example.chatapp_spaceintern.presentation.base.Inflate
 import com.example.chatapp_spaceintern.utils.extension.currentTime
 import com.example.chatapp_spaceintern.utils.extension.isNetworkAvailable
+import com.example.chatapp_spaceintern.utils.extension.toastMessage
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -34,7 +34,7 @@ class TopFragment() : BaseFragment<FragmentTopBinding>() {
     }
 
     override fun saveMessageModel() {
-        if(isNetworkAvailable(context)){
+        if(requireContext().isNetworkAvailable()){
             sendMessage(
                 MessageModel(
                     id = null,
@@ -44,7 +44,7 @@ class TopFragment() : BaseFragment<FragmentTopBinding>() {
                 )
             )
         }else{
-            Toast.makeText(context, getString(R.string.check_internet), Toast.LENGTH_SHORT).show()
+            requireContext().toastMessage(getString(R.string.check_your_internet))
         }
 
         binding.inputEditText.text?.clear()

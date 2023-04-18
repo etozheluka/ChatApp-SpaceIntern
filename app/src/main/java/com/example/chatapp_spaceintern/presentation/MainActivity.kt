@@ -87,8 +87,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFragments() {
         supportFragmentManager.beginTransaction().apply {
-            replace(binding.topFragment.id, TopFragment())
-            replace(binding.bottomFragment.id, BottomFragment())
+            add(binding.topFragment.id, TopFragment())
+            add(binding.bottomFragment.id, BottomFragment())
                 .commit()
         }
     }
