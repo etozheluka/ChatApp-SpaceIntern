@@ -4,11 +4,11 @@ import com.example.chatapp_spaceintern.domain.local.repository.DataStoreReposito
 
 class DayNightPreferencesUseCase (private val dataStoreRepository:DataStoreRepository){
 
-    suspend fun setMode(dayMode:Boolean){
-        return dataStoreRepository.putBoolean(dayMode)
+    suspend fun setMode(dayMode:String){
+        return dataStoreRepository.putString(dayMode)
     }
 
-    suspend fun getMode():Result<Boolean>{
-        return dataStoreRepository.getBoolean()
+    suspend fun getMode():Result<String>{
+        return dataStoreRepository.getString()
     }
 }

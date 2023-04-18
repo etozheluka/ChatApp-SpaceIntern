@@ -8,6 +8,7 @@ import com.example.chatapp_spaceintern.R
 import com.example.chatapp_spaceintern.databinding.ActivityMainBinding
 import com.example.chatapp_spaceintern.presentation.ui.BottomFragment
 import com.example.chatapp_spaceintern.presentation.ui.TopFragment
+import com.example.chatapp_spaceintern.utils.ThemeMode
 import com.example.chatapp_spaceintern.utils.extension.getDrawable
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -57,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
     private suspend fun observer(){
         viewModel.state.collect {
-            if (it.dayMode == true) {
+            if (it.dayMode == ThemeMode.DAY_MODE.mode) {
                 nightDayMode()
             } else {
                 dayNightMode()
