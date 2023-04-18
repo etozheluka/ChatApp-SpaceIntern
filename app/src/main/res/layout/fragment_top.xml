@@ -32,7 +32,7 @@
             android:maxLines="5"
             android:paddingEnd="@dimen/dimen_56dp"
             style="@style/InputBasicSetting"
-            android:textColorHint="@color/hintColor_grey" />
+            android:textColorHint="@color/hint_color_grey" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageButton

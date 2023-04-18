@@ -3,37 +3,46 @@ package com.example.chatapp_spaceintern.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.chatapp_spaceintern.domain.use_case.DayNightPreferencesUseCase
+import com.example.chatapp_spaceintern.utils.StateHolder
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
-class MainActivityViewModel( private val dayNightPreferencesUseCase: DayNightPreferencesUseCase):ViewModel() {
+class MainActivityViewModel(private val dayNightPreferencesUseCase: DayNightPreferencesUseCase) :
+    ViewModel() {
 
-    private fun saveBoolean(dayMode:Boolean){
+    private val _state = MutableSharedFlow<StateHolder>()
+    val state = _state.asSharedFlow()
+
+    private suspend fun getBoolean(): Result<Boolean> = dayNightPreferencesUseCase.getMode()
+
+    private fun saveBoolean(dayMode: Boolean) {
         viewModelScope.launch {
             dayNightPreferencesUseCase.setMode(dayMode)
         }
     }
-    private suspend fun getBoolean():Result<Boolean> = dayNightPreferencesUseCase.getMode()
 
-    fun dayNightHandling(dayNightMode:() ->Unit, nightDayMode:() ->Unit){
+
+    fun dayNightHandling() {
         viewModelScope.launch {
             val mode = getBoolean()
             if (mode.getOrNull() == true) {
-                dayNightMode()
+                _state.emit(StateHolder(false))
                 saveBoolean(false)
             } else {
-                nightDayMode()
+                _state.emit(StateHolder(true))
                 saveBoolean(true)
             }
         }
     }
 
-     fun checkPreferencesStatus(nightDayMode:() ->Unit, dayNightMode:() ->Unit) {
-         viewModelScope.launch {
+    fun checkPreferencesStatus() {
+        viewModelScope.launch {
             val mode = getBoolean()
             if (mode.getOrNull() == true) {
-                nightDayMode()
+                _state.emit(StateHolder(true))
             } else {
-                dayNightMode()
+                _state.emit(StateHolder(false))
             }
         }
     }

@@ -15,7 +15,7 @@ abstract class BaseFragment<VB : ViewBinding>(
 
     private var _binding: VB? = null
     abstract fun inflate(): Inflate<VB>
-    protected val binding get() = _binding
+    protected val binding get() = _binding!!
 
     abstract fun onBind()
     abstract fun initRecycler()
@@ -28,8 +28,10 @@ abstract class BaseFragment<VB : ViewBinding>(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = this.inflate().invoke(inflater, container, false)
-        return binding?.root
+        if (_binding == null){
+            _binding = this.inflate().invoke(inflater, container, false)
+        }
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

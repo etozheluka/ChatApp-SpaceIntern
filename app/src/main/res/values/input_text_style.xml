@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="InputBasicSetting" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/greyInputTextColor</item>
+        <item name="android:textColor">?attr/color</item>
         <item name="android:scrollbarThumbVertical">@drawable/scrollbar_scroll</item>
         <item name="android:scrollbarTrackVertical">@drawable/scrollbar_thing</item>
         <item name="android:scrollbars">vertical</item>
-        <item name="android:textColorHint">@color/hintColor_grey</item>
+        <item name="android:textColorHint">@color/hint_color_grey</item>
         <item name="android:fontFamily">@font/myriad_geo</item>
     </style>
 </resources>

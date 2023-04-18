@@ -28,7 +28,7 @@ class BottomFragment : BaseFragment<FragmentBottomBinding>() {
 
     override fun onBind() {
         initRecycler()
-        binding?.imageBtnView?.setOnClickListener {
+        binding.imageBtnView.setOnClickListener {
             saveMessageModel()
         }
     }
@@ -39,7 +39,7 @@ class BottomFragment : BaseFragment<FragmentBottomBinding>() {
                 MessageModel(
                     id = null,
                     sender = SENDER,
-                    message = binding?.inputEditText?.text.toString(),
+                    message = binding.inputEditText.text.toString(),
                     time = currentTime()
                 )
             )
@@ -47,7 +47,7 @@ class BottomFragment : BaseFragment<FragmentBottomBinding>() {
             Toast.makeText(context, getString(R.string.check_internet), Toast.LENGTH_SHORT).show()
         }
 
-        binding?.inputEditText?.text?.clear()
+        binding.inputEditText.text?.clear()
     }
 
     override fun sendMessage(messageModel: MessageModel) {
@@ -55,7 +55,7 @@ class BottomFragment : BaseFragment<FragmentBottomBinding>() {
     }
 
     override fun initRecycler() {
-        binding?.bottomRecycler?.adapter = adapter
+        binding.bottomRecycler.adapter = adapter
         showMessages()
     }
 

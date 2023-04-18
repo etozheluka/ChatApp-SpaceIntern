@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_6dp"
         android:fontFamily="@font/myriad_geo"
-        android:textColor="@color/dateBasicColor"
+        android:textColor="@color/date_basic_color_grey"
         android:textSize="@dimen/mediumMyriadGeo_Text_small"
         app:layout_constraintStart_toEndOf="@+id/rectangleImageView"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
