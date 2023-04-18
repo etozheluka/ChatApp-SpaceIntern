@@ -11,7 +11,7 @@ private fun provideChatDataBase(context: Context): AppDataBase {
 
 private fun provideDao(db: AppDataBase) = db.chatDao()
 
-val roomModule = module {
+val dataBaseModule = module {
     single { provideChatDataBase(get()) }
     single { provideDao(get()) }
 }

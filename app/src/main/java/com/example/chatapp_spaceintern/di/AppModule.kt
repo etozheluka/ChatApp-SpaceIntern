@@ -11,7 +11,7 @@ import org.koin.dsl.module
 
 val appModule = module {
 
-    includes(roomModule)
+    includes(dataBaseModule)
     includes(useCaseModule)
     includes(dataStoreModule)
 
