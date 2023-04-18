@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.chatapp_spaceintern.R
 import com.example.chatapp_spaceintern.databinding.ActivityMainBinding
-import com.example.chatapp_spaceintern.presentation.ui.BottomFragment
-import com.example.chatapp_spaceintern.presentation.ui.TopFragment
+import com.example.chatapp_spaceintern.presentation.ui.bottom_fragment.BottomFragment
+import com.example.chatapp_spaceintern.presentation.ui.top_fragment.TopFragment
 import com.example.chatapp_spaceintern.utils.ThemeMode
 import com.example.chatapp_spaceintern.utils.extension.getDrawable
 import com.example.chatapp_spaceintern.utils.extension.launchWithLifecycle

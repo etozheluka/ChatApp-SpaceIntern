@@ -1,4 +1,4 @@
-package com.example.chatapp_spaceintern.presentation.ui
+package com.example.chatapp_spaceintern.presentation.ui.bottom_fragment
 
 import androidx.lifecycle.lifecycleScope
 import com.example.chatapp_spaceintern.R
@@ -16,7 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BottomFragment : BaseFragment<FragmentBottomBinding>() {
 
-    private val viewModel by viewModel<SharedViewModel>()
+    private val viewModel by viewModel<BottomFragmentViewModel>()
 
     private val adapter by lazy {
         ChatRecyclerAdapter(SENDER)

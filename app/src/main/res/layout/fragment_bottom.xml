@@ -5,7 +5,7 @@
     android:id="@+id/bottomFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.BottomFragment">
+    tools:context=".presentation.ui.bottom_fragment.BottomFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputLayout"

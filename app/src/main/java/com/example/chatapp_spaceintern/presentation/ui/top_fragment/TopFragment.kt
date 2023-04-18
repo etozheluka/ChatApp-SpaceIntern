@@ -1,4 +1,4 @@
-package com.example.chatapp_spaceintern.presentation.ui
+package com.example.chatapp_spaceintern.presentation.ui.top_fragment
 
 import androidx.lifecycle.lifecycleScope
 import com.example.chatapp_spaceintern.R
@@ -16,7 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TopFragment() : BaseFragment<FragmentTopBinding>() {
 
-    private val viewModel by viewModel<SharedViewModel>()
+    private val viewModel by viewModel<TopFragmentViewModel>()
 
     private val adapter by lazy {
         ChatRecyclerAdapter(SENDER)
