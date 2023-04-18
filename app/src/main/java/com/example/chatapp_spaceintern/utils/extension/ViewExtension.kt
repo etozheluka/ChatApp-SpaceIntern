@@ -4,6 +4,6 @@ import android.content.Context
 import android.view.View
 import androidx.core.content.ContextCompat
 
-fun View.setColor(context:Context,color:Int){
-    setBackgroundColor(ContextCompat.getColor(context,color))
+fun View.setColor(context: Context, color: Int) {
+    setBackgroundColor(ContextCompat.getColor(context, color))
 }

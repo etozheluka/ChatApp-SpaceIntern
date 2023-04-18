@@ -7,10 +7,10 @@ import com.example.chatapp_spaceintern.domain.local.repository.ChatMessageReposi
 import com.example.chatapp_spaceintern.domain.model.MessageModel
 import kotlinx.coroutines.flow.map
 
-class ChatMessageRepositoryImpl (private val db: AppDataBase):ChatMessageRepository {
+class ChatMessageRepositoryImpl(private val db: AppDataBase) : ChatMessageRepository {
 
     override fun getAll() = db.chatDao().getAll().map { chat ->
-        chat.map{
+        chat.map {
             it.toModel()
         }
     }

@@ -12,11 +12,12 @@ import kotlinx.coroutines.flow.map
 import java.io.IOException
 
 
-class DataStoreRepositoryImpl (private val dataStorePreferences: DataStore<Preferences>):DataStoreRepository {
+class DataStoreRepositoryImpl(private val dataStorePreferences: DataStore<Preferences>) :
+    DataStoreRepository {
 
     override suspend fun putString(dayMode: String) {
         Result.runCatching {
-            dataStorePreferences.edit {preferences ->
+            dataStorePreferences.edit { preferences ->
                 preferences[stringPreferencesKey(STRING_KEY)] = dayMode
 
             }
@@ -26,9 +27,9 @@ class DataStoreRepositoryImpl (private val dataStorePreferences: DataStore<Prefe
     override suspend fun getString(): Result<String> {
         return Result.runCatching {
             val flow = dataStorePreferences.data.catch {
-                if (it is IOException){
+                if (it is IOException) {
                     emit(emptyPreferences())
-                }else{
+                } else {
                     throw it
                 }
             }.map {
@@ -39,7 +40,7 @@ class DataStoreRepositoryImpl (private val dataStorePreferences: DataStore<Prefe
         }
     }
 
-    companion object{
+    companion object {
         private const val STRING_KEY = "string_key"
     }
 }

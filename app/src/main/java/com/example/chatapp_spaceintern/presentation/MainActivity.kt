@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun observer(){
+    private suspend fun observer() {
         viewModel.state.collect {
             if (it.dayMode == ThemeMode.DAY_MODE.mode) {
                 nightDayMode()

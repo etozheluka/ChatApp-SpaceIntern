@@ -28,7 +28,7 @@ abstract class BaseFragment<VB : ViewBinding>(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (_binding == null){
+        if (_binding == null) {
             _binding = this.inflate().invoke(inflater, container, false)
         }
         return binding.root

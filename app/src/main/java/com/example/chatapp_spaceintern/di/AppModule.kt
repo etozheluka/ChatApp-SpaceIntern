@@ -19,7 +19,7 @@ val appModule = module {
     single<DataStoreRepository> { DataStoreRepositoryImpl(get()) }
 
     viewModel {
-        SharedViewModel(get(),get())
+        SharedViewModel(get(), get())
     }
 
     viewModel {

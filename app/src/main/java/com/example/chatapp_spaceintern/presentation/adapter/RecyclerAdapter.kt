@@ -27,7 +27,7 @@ class RecyclerAdapter(private val sender: String) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when (viewType){
+        return when (viewType) {
             TOP -> {
                 TopViewHolder(
                     SendToMessageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -35,7 +35,11 @@ class RecyclerAdapter(private val sender: String) :
             }
             else -> {
                 BottomViewHolder(
-                    SendFromMessageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                    SendFromMessageBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
                 )
             }
         }

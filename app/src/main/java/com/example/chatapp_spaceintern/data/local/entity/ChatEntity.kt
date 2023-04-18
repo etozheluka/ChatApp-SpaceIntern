@@ -8,14 +8,14 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity(tableName = "message_store")
-data class ChatEntity (
+data class ChatEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id:Int?,
+    val id: Int?,
     @ColumnInfo(name = "sender")
     val sender: String?,
     @ColumnInfo(name = "message")
     val message: String?,
     @ColumnInfo(name = "time")
     val time: String?,
-):Parcelable
+) : Parcelable
