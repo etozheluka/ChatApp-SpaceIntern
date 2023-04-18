@@ -6,7 +6,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
-@Parcelize
+
 @Entity(tableName = "message_store")
 data class ChatEntity(
     @PrimaryKey(autoGenerate = true)
@@ -18,4 +18,4 @@ data class ChatEntity(
     val message: String?,
     @ColumnInfo(name = "time")
     val time: String?,
-) : Parcelable
+)

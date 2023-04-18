@@ -6,14 +6,7 @@ import com.example.chatapp_spaceintern.domain.use_case.ShowMessageUseCase
 import org.koin.dsl.module
 
 val useCaseModule = module {
-    single {
-        SendMessageUseCase(get())
-    }
-
-    single {
-        ShowMessageUseCase(get())
-    }
-    single {
-        DayNightPreferencesUseCase(get())
-    }
+    single { SendMessageUseCase(get()) }
+    single { ShowMessageUseCase(get()) }
+    single { DayNightPreferencesUseCase(get()) }
 }

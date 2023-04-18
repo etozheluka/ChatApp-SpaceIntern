@@ -4,7 +4,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.chatapp_spaceintern.R
 import com.example.chatapp_spaceintern.databinding.FragmentTopBinding
 import com.example.chatapp_spaceintern.domain.model.MessageModel
-import com.example.chatapp_spaceintern.presentation.adapter.RecyclerAdapter
+import com.example.chatapp_spaceintern.presentation.adapter.ChatRecyclerAdapter
 import com.example.chatapp_spaceintern.presentation.base.BaseFragment
 import com.example.chatapp_spaceintern.presentation.base.Inflate
 import com.example.chatapp_spaceintern.utils.extension.currentTime
@@ -19,7 +19,7 @@ class TopFragment() : BaseFragment<FragmentTopBinding>() {
     private val viewModel by viewModel<SharedViewModel>()
 
     private val adapter by lazy {
-        RecyclerAdapter(SENDER)
+        ChatRecyclerAdapter(SENDER)
     }
 
     override fun inflate(): Inflate<FragmentTopBinding> {

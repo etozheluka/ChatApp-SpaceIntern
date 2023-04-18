@@ -1,4 +1,4 @@
-package com.example.chatapp_spaceintern.data.local.repository
+package com.example.chatapp_spaceintern.data.repository
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

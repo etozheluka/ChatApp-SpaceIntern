@@ -3,15 +3,15 @@ package com.example.chatapp_spaceintern.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatapp_spaceintern.databinding.SendFromMessageBinding
 import com.example.chatapp_spaceintern.databinding.SendToMessageBinding
 import com.example.chatapp_spaceintern.domain.model.MessageModel
+import com.example.chatapp_spaceintern.presentation.base.DiffCallback
 
-class RecyclerAdapter(private val sender: String) :
-    ListAdapter<MessageModel, RecyclerView.ViewHolder>(DiffCallBack()) {
+class ChatRecyclerAdapter(private val sender: String) :
+    ListAdapter<MessageModel, RecyclerView.ViewHolder>(DiffCallback()) {
 
     override fun getItemViewType(position: Int): Int {
         val messageSender = getItem(position)
@@ -50,16 +50,6 @@ class RecyclerAdapter(private val sender: String) :
         when (holder) {
             is TopViewHolder -> holder.bind()
             is BottomViewHolder -> holder.bind()
-        }
-    }
-
-    class DiffCallBack : DiffUtil.ItemCallback<MessageModel>() {
-        override fun areItemsTheSame(oldItem: MessageModel, newItem: MessageModel): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: MessageModel, newItem: MessageModel): Boolean {
-            return oldItem == newItem
         }
     }
 

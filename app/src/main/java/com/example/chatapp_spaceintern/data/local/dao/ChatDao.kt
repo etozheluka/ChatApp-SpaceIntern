@@ -12,5 +12,5 @@ interface ChatDao {
     fun getAll(): Flow<List<ChatEntity>>
 
     @Insert
-    suspend fun insertAll(vararg users: ChatEntity)
+    suspend fun insertAll(vararg messages: ChatEntity)
 }

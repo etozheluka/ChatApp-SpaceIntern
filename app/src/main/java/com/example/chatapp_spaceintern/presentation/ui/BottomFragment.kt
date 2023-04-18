@@ -4,7 +4,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.chatapp_spaceintern.R
 import com.example.chatapp_spaceintern.databinding.FragmentBottomBinding
 import com.example.chatapp_spaceintern.domain.model.MessageModel
-import com.example.chatapp_spaceintern.presentation.adapter.RecyclerAdapter
+import com.example.chatapp_spaceintern.presentation.adapter.ChatRecyclerAdapter
 import com.example.chatapp_spaceintern.presentation.base.BaseFragment
 import com.example.chatapp_spaceintern.presentation.base.Inflate
 import com.example.chatapp_spaceintern.utils.extension.currentTime
@@ -19,7 +19,7 @@ class BottomFragment : BaseFragment<FragmentBottomBinding>() {
     private val viewModel by viewModel<SharedViewModel>()
 
     private val adapter by lazy {
-        RecyclerAdapter(SENDER)
+        ChatRecyclerAdapter(SENDER)
     }
 
     override fun inflate(): Inflate<FragmentBottomBinding> {
@@ -38,7 +38,7 @@ class BottomFragment : BaseFragment<FragmentBottomBinding>() {
             sendMessage(
                 MessageModel(
                     id = null,
-                    sender = adapter.toString(),
+                    sender = SENDER,
                     message = binding.inputEditText.text.toString(),
                     time = currentTime()
                 )

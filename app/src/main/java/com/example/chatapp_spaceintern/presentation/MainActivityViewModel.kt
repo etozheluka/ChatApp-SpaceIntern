@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.chatapp_spaceintern.domain.use_case.DayNightPreferencesUseCase
 import com.example.chatapp_spaceintern.utils.StateHolder
 import com.example.chatapp_spaceintern.utils.ThemeMode
+import com.example.chatapp_spaceintern.utils.extension.launchWithViewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
@@ -25,7 +26,7 @@ class MainActivityViewModel(private val dayNightPreferencesUseCase: DayNightPref
 
 
     fun dayNightHandling() {
-        viewModelScope.launch {
+        launchWithViewModelScope {
             val mode = getString()
             if (mode.getOrNull() == ThemeMode.DAY_MODE.mode) {
                 _state.emit(StateHolder(ThemeMode.NIGHT_MODE.mode))
@@ -38,7 +39,7 @@ class MainActivityViewModel(private val dayNightPreferencesUseCase: DayNightPref
     }
 
     fun checkPreferencesStatus() {
-        viewModelScope.launch {
+        launchWithViewModelScope {
             val mode = getString()
             if (mode.getOrNull() == ThemeMode.DAY_MODE.mode) {
                 _state.emit(StateHolder(ThemeMode.DAY_MODE.mode))
