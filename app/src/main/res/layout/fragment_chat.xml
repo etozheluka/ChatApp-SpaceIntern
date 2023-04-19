@@ -5,7 +5,7 @@
     android:id="@+id/topFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.top_fragment.TopFragment">
+    tools:context=".presentation.ui.chat_fragment.ChatFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputLayout"

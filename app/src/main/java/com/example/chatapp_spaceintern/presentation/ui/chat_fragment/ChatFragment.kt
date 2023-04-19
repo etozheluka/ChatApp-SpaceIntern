@@ -1,12 +1,13 @@
-package com.example.chatapp_spaceintern.presentation.ui.top_fragment
+package com.example.chatapp_spaceintern.presentation.ui.chat_fragment
 
 import androidx.lifecycle.lifecycleScope
 import com.example.chatapp_spaceintern.R
-import com.example.chatapp_spaceintern.databinding.FragmentTopBinding
+import com.example.chatapp_spaceintern.databinding.FragmentChatBinding
 import com.example.chatapp_spaceintern.domain.model.MessageModel
 import com.example.chatapp_spaceintern.presentation.adapter.ChatRecyclerAdapter
 import com.example.chatapp_spaceintern.presentation.base.BaseFragment
 import com.example.chatapp_spaceintern.presentation.base.Inflate
+import com.example.chatapp_spaceintern.presentation.model.UserEnum
 import com.example.chatapp_spaceintern.utils.extension.currentTime
 import com.example.chatapp_spaceintern.utils.extension.isNetworkAvailable
 import com.example.chatapp_spaceintern.utils.extension.toastMessage
@@ -14,20 +15,22 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class TopFragment() : BaseFragment<FragmentTopBinding, TopFragmentViewModel>() {
+class ChatFragment() : BaseFragment<FragmentChatBinding, ChatFragmentViewModel>() {
 
-    override val viewModel by viewModel<TopFragmentViewModel>()
+    override val viewModel by viewModel<ChatFragmentViewModel>()
 
     private val adapter by lazy {
-        ChatRecyclerAdapter(SENDER)
+        if (tag == UserEnum.TOP_USER.user) ChatRecyclerAdapter(UserEnum.TOP_USER.user) else ChatRecyclerAdapter(
+            UserEnum.BOTTOM_USER.user
+        )
     }
 
-    override fun inflate(): Inflate<FragmentTopBinding> {
-        return FragmentTopBinding::inflate
+    override fun inflate(): Inflate<FragmentChatBinding> {
+        return FragmentChatBinding::inflate
     }
 
 
-    override fun onBind(viewModel: TopFragmentViewModel) {
+    override fun onBind(viewModel: ChatFragmentViewModel) {
         initRecycler()
         binding.imageBtnView.setOnClickListener {
             saveMessageModel()
@@ -40,7 +43,7 @@ class TopFragment() : BaseFragment<FragmentTopBinding, TopFragmentViewModel>() {
             sendMessage(
                 MessageModel(
                     id = null,
-                    sender = SENDER,
+                    sender = if (tag == UserEnum.TOP_USER.user) UserEnum.TOP_USER.user else UserEnum.BOTTOM_USER.user,
                     message = binding.inputEditText.text.toString(),
                     time = currentTime()
                 )
@@ -69,7 +72,4 @@ class TopFragment() : BaseFragment<FragmentTopBinding, TopFragmentViewModel>() {
         viewModel.sendMessage(messageModel)
     }
 
-    companion object {
-        private const val SENDER = "TOP"
-    }
 }

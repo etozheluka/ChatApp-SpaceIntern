@@ -1,4 +1,4 @@
-package com.example.chatapp_spaceintern.presentation.ui.bottom_fragment
+package com.example.chatapp_spaceintern.presentation.ui.chat_fragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,7 +8,7 @@ import com.example.chatapp_spaceintern.domain.use_case.ShowMessageUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-class BottomFragmentViewModel(
+class ChatFragmentViewModel(
     private val sendMessageUseCase: SendMessageUseCase,
     private val showMessageUseCase: ShowMessageUseCase,
 
