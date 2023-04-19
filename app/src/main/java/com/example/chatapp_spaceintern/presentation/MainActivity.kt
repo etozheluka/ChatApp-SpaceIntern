@@ -66,11 +66,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkDeviceStatus() {
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            binding.dayNightSwitcher.getDrawable(baseContext, R.drawable.night_day_switch)
-        } else {
-            binding.dayNightSwitcher.getDrawable(baseContext, R.drawable.day_night_switch)
-        }
+        binding.dayNightSwitcher.getDrawable(baseContext,
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) R.drawable.night_day_switch else R.drawable.day_night_switch
+        )
     }
 
     private fun dayNightHandling() {
@@ -86,8 +84,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFragments() {
         supportFragmentManager.beginTransaction().apply {
-            add(binding.topFragment.id, TopFragment())
-            add(binding.bottomFragment.id, BottomFragment())
+            replace(binding.topFragment.id, TopFragment())
+            replace(binding.bottomFragment.id, BottomFragment())
                 .commit()
         }
     }

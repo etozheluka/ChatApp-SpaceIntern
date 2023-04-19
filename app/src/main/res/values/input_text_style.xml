@@ -5,7 +5,7 @@
         <item name="android:scrollbarThumbVertical">@drawable/scrollbar_scroll</item>
         <item name="android:scrollbarTrackVertical">@drawable/scrollbar_thing</item>
         <item name="android:scrollbars">vertical</item>
-        <item name="android:textColorHint">@color/hint_color_grey</item>
+        <item name="android:textColorHint">@color/grey_200</item>
         <item name="android:fontFamily">@font/myriad_geo</item>
     </style>
 </resources>

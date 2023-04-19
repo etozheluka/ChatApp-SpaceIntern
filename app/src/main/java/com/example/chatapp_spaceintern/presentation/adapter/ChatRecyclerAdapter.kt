@@ -10,6 +10,7 @@ import com.example.chatapp_spaceintern.databinding.SendToMessageBinding
 import com.example.chatapp_spaceintern.domain.model.MessageModel
 import com.example.chatapp_spaceintern.presentation.base.DiffCallback
 
+
 class ChatRecyclerAdapter(private val sender: String) :
     ListAdapter<MessageModel, RecyclerView.ViewHolder>(DiffCallback()) {
 
@@ -45,36 +46,32 @@ class ChatRecyclerAdapter(private val sender: String) :
         }
     }
 
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val item = getItem(position)
         when (holder) {
-            is TopViewHolder -> holder.bind()
-            is BottomViewHolder -> holder.bind()
+            is TopViewHolder -> holder.bind(item)
+            is BottomViewHolder -> holder.bind(item)
         }
     }
 
-    inner class TopViewHolder(private val binding: SendToMessageBinding) :
+    class TopViewHolder(private val binding: SendToMessageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        private lateinit var currentMessage: MessageModel
-        fun bind() {
-            currentMessage = getItem(adapterPosition)
+        fun bind(item:MessageModel) {
             with(binding) {
-                sendToTextView.text = currentMessage.message
-                dateTextViewTo.text = currentMessage.time
+                sendToTextView.text = item.message
+                dateTextViewTo.text = item.time
             }
         }
     }
 
-    inner class BottomViewHolder(private val binding: SendFromMessageBinding) :
+    class BottomViewHolder(private val binding: SendFromMessageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        private lateinit var currentMessage: MessageModel
-        fun bind() {
-            currentMessage = getItem(adapterPosition)
+        fun bind(item:MessageModel) {
             with(binding) {
-                sendFromTextView.text = currentMessage.message
-                dateTextViewFrom.text = currentMessage.time
+                sendFromTextView.text = item.message
+                dateTextViewFrom.text = item.time
             }
         }
     }

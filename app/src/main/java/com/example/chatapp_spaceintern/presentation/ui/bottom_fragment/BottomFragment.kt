@@ -14,9 +14,9 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class BottomFragment : BaseFragment<FragmentBottomBinding>() {
+class BottomFragment : BaseFragment<FragmentBottomBinding, BottomFragmentViewModel>() {
 
-    private val viewModel by viewModel<BottomFragmentViewModel>()
+    override val viewModel by viewModel<BottomFragmentViewModel>()
 
     private val adapter by lazy {
         ChatRecyclerAdapter(SENDER)
@@ -26,7 +26,7 @@ class BottomFragment : BaseFragment<FragmentBottomBinding>() {
         return FragmentBottomBinding::inflate
     }
 
-    override fun onBind() {
+    override fun onBind(viewModel: BottomFragmentViewModel) {
         initRecycler()
         binding.imageBtnView.setOnClickListener {
             saveMessageModel()
@@ -44,7 +44,7 @@ class BottomFragment : BaseFragment<FragmentBottomBinding>() {
                 )
             )
         } else {
-           requireContext().toastMessage(getString(R.string.check_your_internet))
+            requireContext().toastMessage(getString(R.string.check_your_internet))
         }
 
         binding.inputEditText.text?.clear()

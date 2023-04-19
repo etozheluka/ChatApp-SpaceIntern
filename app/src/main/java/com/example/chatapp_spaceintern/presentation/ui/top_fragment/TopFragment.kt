@@ -14,9 +14,9 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class TopFragment() : BaseFragment<FragmentTopBinding>() {
+class TopFragment() : BaseFragment<FragmentTopBinding, TopFragmentViewModel>() {
 
-    private val viewModel by viewModel<TopFragmentViewModel>()
+    override val viewModel by viewModel<TopFragmentViewModel>()
 
     private val adapter by lazy {
         ChatRecyclerAdapter(SENDER)
@@ -26,15 +26,17 @@ class TopFragment() : BaseFragment<FragmentTopBinding>() {
         return FragmentTopBinding::inflate
     }
 
-    override fun onBind() {
+
+    override fun onBind(viewModel: TopFragmentViewModel) {
         initRecycler()
         binding.imageBtnView.setOnClickListener {
             saveMessageModel()
         }
     }
 
+
     override fun saveMessageModel() {
-        if(requireContext().isNetworkAvailable()){
+        if (requireContext().isNetworkAvailable()) {
             sendMessage(
                 MessageModel(
                     id = null,
@@ -43,7 +45,7 @@ class TopFragment() : BaseFragment<FragmentTopBinding>() {
                     time = currentTime()
                 )
             )
-        }else{
+        } else {
             requireContext().toastMessage(getString(R.string.check_your_internet))
         }
 
