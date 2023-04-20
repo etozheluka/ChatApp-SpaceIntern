@@ -5,5 +5,5 @@ import com.example.chatapp_spaceintern.domain.model.MessageModel
 
 class SendMessageUseCase(private val repository: ChatMessageRepository) {
 
-    suspend fun invoke(chat: MessageModel) = repository.insertAll(chat)
+    suspend fun invoke(chat: MessageModel) = repository.insertMessage(chat)
 }

@@ -16,10 +16,8 @@ class DataStoreRepositoryImpl(private val dataStorePreferences: DataStoreManager
 
     override suspend fun getThemeStateValue(): Result<String> {
         return Result.runCatching {
-            return Result.runCatching {
-                val flow = dataStorePreferences.getValue(STRING_KEY)
-                flow.firstOrNull() ?: ""
-            }
+            val flow = dataStorePreferences.getValue(STRING_KEY)
+            flow.firstOrNull() ?: ""
         }
     }
 

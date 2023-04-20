@@ -15,7 +15,7 @@ class ChatMessageRepositoryImpl(private val dao:ChatDao) : ChatMessageRepository
         }
     }
 
-    override suspend fun insertAll(message: MessageModel) {
-        dao.insertAll(message.toEntity())
+    override suspend fun insertMessage(message: MessageModel) {
+        dao.insertMessage(message.toEntity())
     }
 }

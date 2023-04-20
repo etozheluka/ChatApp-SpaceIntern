@@ -7,5 +7,5 @@ interface ChatMessageRepository {
 
     fun getAll(): Flow<List<MessageModel>>
 
-    suspend fun insertAll(message: MessageModel)
+    suspend fun insertMessage(message: MessageModel)
 }
