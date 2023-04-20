@@ -28,33 +28,35 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatFragmentViewModel>() 
         )
     }
 
+    private fun provideMessageModel(text:String) = MessageModel(
+        id = null,
+        sender = if (tag == UserEnum.TOP_USER.user) UserEnum.TOP_USER.user else UserEnum.BOTTOM_USER.user,
+        message = text,
+        time = currentTime()
+    )
+
     override fun inflate(): Inflate<FragmentChatBinding> {
         return FragmentChatBinding::inflate
     }
 
 
     override fun onBind(viewModel: ChatFragmentViewModel) {
+
         initRecycler(viewModel)
         binding.imageBtnView.setOnClickListener {
-            saveMessageModel(viewModel)
+            if (requireContext().isNetworkAvailable()) {
+                saveMessageModel(viewModel)
+            } else {
+                sendNoInternetMessage()
+            }
         }
-    }
 
+    }
 
     private fun saveMessageModel(viewModel: ChatFragmentViewModel) {
         if (requireContext().isNetworkAvailable()) {
-            sendMessage(
-                MessageModel(
-                    id = null,
-                    sender = if (tag == UserEnum.TOP_USER.user) UserEnum.TOP_USER.user else UserEnum.BOTTOM_USER.user,
-                    message = binding.inputEditText.text.toString(),
-                    time = currentTime()
-                ), viewModel
-            )
-        } else {
-            requireContext().toastMessage(getString(R.string.check_your_internet))
+            sendMessage(provideMessageModel(binding.inputEditText.text.toString()), viewModel)
         }
-
         binding.inputEditText.text?.clear()
     }
 
@@ -66,7 +68,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatFragmentViewModel>() 
     private fun showMessages(viewModel: ChatFragmentViewModel) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.showMessages().collect {
-                adapter.submitList(it) //TODO -> Recycler Adapter
+                adapter.submitList(it)
             }
         }
     }
@@ -75,4 +77,9 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatFragmentViewModel>() 
         viewModel.sendMessage(messageModel)
     }
 
+    private fun sendNoInternetMessage(){
+        requireContext().toastMessage(getString(R.string.check_your_internet))
+        val list = listOf(provideMessageModel(binding.inputEditText.text.toString()))
+        adapter.submitList(list)
+    }
 }
