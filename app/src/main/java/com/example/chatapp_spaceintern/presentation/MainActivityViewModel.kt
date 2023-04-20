@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.chatapp_spaceintern.domain.use_case.DayNightPreferencesUseCase
 import com.example.chatapp_spaceintern.presentation.model.StateHolder
-import com.example.chatapp_spaceintern.presentation.model.ThemeModeEnum
+import com.example.chatapp_spaceintern.utils.ThemeModeEnum
 import com.example.chatapp_spaceintern.utils.extension.launchWithViewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -18,7 +18,7 @@ class MainActivityViewModel(private val dayNightPreferencesUseCase: DayNightPref
 
     private suspend fun getString(): Result<String> = dayNightPreferencesUseCase.getMode()
 
-    private fun saveString(dayMode: String) {
+    private fun saveString(dayMode: ThemeModeEnum) {
         viewModelScope.launch {
             dayNightPreferencesUseCase.setMode(dayMode)
         }
@@ -30,10 +30,10 @@ class MainActivityViewModel(private val dayNightPreferencesUseCase: DayNightPref
             val mode = getString()
             if (mode.getOrNull() == ThemeModeEnum.DAY_MODE.mode) {
                 _state.emit(StateHolder(ThemeModeEnum.NIGHT_MODE.mode))
-                saveString(ThemeModeEnum.NIGHT_MODE.mode)
+                saveString(ThemeModeEnum.NIGHT_MODE)
             } else {
                 _state.emit(StateHolder(ThemeModeEnum.DAY_MODE.mode))
-                saveString(ThemeModeEnum.DAY_MODE.mode)
+                saveString(ThemeModeEnum.DAY_MODE)
             }
         }
     }

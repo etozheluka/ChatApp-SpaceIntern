@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.chatapp_spaceintern.databinding.SendFromMessageBinding
 import com.example.chatapp_spaceintern.databinding.SendToMessageBinding
 import com.example.chatapp_spaceintern.domain.model.MessageModel
-import com.example.chatapp_spaceintern.presentation.base.DiffCallback
+import com.example.chatapp_spaceintern.utils.DiffCallback
 
 
 class ChatRecyclerAdapter(private val sender: String) :

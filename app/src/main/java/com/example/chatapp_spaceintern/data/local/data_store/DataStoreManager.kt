@@ -1,32 +1,25 @@
 package com.example.chatapp_spaceintern.data.local.data_store
 
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.core.stringPreferencesKey
+import com.example.chatapp_spaceintern.utils.ThemeModeEnum
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
-import java.io.IOException
 
 class DataStoreManager(private val dataStore: DataStore<Preferences>) {
 
-    suspend fun edit(block: suspend (MutablePreferences) -> Unit) {
+    suspend fun saveValue(key: String, dayMode: ThemeModeEnum) {
         dataStore.edit { preferences ->
-            block(preferences)
+            preferences[stringPreferencesKey(key)] = dayMode.mode
         }
     }
 
-    fun getFlow(key: Preferences.Key<String>, defaultValue: String = ""): Flow<String> {
-        return dataStore.data.catch { exception ->
-            if (exception is IOException) {
-                emit(emptyPreferences())
-            } else {
-                throw exception
-            }
-        }.map { preferences ->
-            preferences[key] ?: defaultValue
+    fun getValue(key: String, defaultValue: String = ""): Flow<String> {
+        val preferences = dataStore.data.map { preference ->
+            preference[stringPreferencesKey(key)] ?: defaultValue
         }
+        return preferences
     }
 }

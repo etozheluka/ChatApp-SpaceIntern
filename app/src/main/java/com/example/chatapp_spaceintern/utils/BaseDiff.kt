@@ -1,4 +1,4 @@
-package com.example.chatapp_spaceintern.presentation.base
+package com.example.chatapp_spaceintern.utils
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
