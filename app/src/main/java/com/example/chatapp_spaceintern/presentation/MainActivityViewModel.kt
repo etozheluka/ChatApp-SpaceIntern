@@ -16,9 +16,9 @@ class MainActivityViewModel(private val dayNightPreferencesUseCase: DayNightPref
     private val _state = MutableSharedFlow<StateHolder>()
     val state = _state.asSharedFlow()
 
-    private suspend fun getString(): Result<String> = dayNightPreferencesUseCase.getMode()
+    private suspend fun getThemeStateValue(): Result<String> = dayNightPreferencesUseCase.getMode()
 
-    private fun saveString(dayMode: ThemeModeEnum) {
+    private fun saveThemeStateValue(dayMode: ThemeModeEnum) {
         viewModelScope.launch {
             dayNightPreferencesUseCase.setMode(dayMode)
         }
@@ -27,20 +27,20 @@ class MainActivityViewModel(private val dayNightPreferencesUseCase: DayNightPref
 
     fun dayNightHandling() {
         launchWithViewModelScope {
-            val mode = getString()
+            val mode = getThemeStateValue()
             if (mode.getOrNull() == ThemeModeEnum.DAY_MODE.mode) {
                 _state.emit(StateHolder(ThemeModeEnum.NIGHT_MODE.mode))
-                saveString(ThemeModeEnum.NIGHT_MODE)
+                saveThemeStateValue(ThemeModeEnum.NIGHT_MODE)
             } else {
                 _state.emit(StateHolder(ThemeModeEnum.DAY_MODE.mode))
-                saveString(ThemeModeEnum.DAY_MODE)
+                saveThemeStateValue(ThemeModeEnum.DAY_MODE)
             }
         }
     }
 
     fun checkPreferencesStatus() {
         launchWithViewModelScope {
-            val mode = getString()
+            val mode = getThemeStateValue()
             if (mode.getOrNull() == ThemeModeEnum.DAY_MODE.mode) {
                 _state.emit(StateHolder(ThemeModeEnum.DAY_MODE.mode))
             } else {

@@ -6,10 +6,10 @@ import com.example.chatapp_spaceintern.utils.ThemeModeEnum
 class DayNightPreferencesUseCase(private val dataStoreRepository: DataStoreRepository) {
 
     suspend fun setMode(dayMode: ThemeModeEnum) {
-        return dataStoreRepository.putString(dayMode)
+        return dataStoreRepository.putThemeStateValue(dayMode)
     }
 
     suspend fun getMode(): Result<String> {
-        return dataStoreRepository.getString()
+        return dataStoreRepository.getThemeStateValue()
     }
 }

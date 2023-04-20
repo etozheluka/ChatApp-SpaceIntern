@@ -8,13 +8,13 @@ import kotlinx.coroutines.flow.firstOrNull
 class DataStoreRepositoryImpl(private val dataStorePreferences: DataStoreManager) :
     DataStoreRepository {
 
-    override suspend fun putString(dayMode: ThemeModeEnum) {
+    override suspend fun putThemeStateValue(dayMode: ThemeModeEnum) {
         Result.runCatching {
             dataStorePreferences.saveValue(STRING_KEY,dayMode)
         }
     }
 
-    override suspend fun getString(): Result<String> {
+    override suspend fun getThemeStateValue(): Result<String> {
         return Result.runCatching {
             return Result.runCatching {
                 val flow = dataStorePreferences.getValue(STRING_KEY)
