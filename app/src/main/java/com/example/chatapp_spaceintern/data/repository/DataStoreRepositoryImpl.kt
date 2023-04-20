@@ -1,18 +1,12 @@
 package com.example.chatapp_spaceintern.data.repository
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.example.chatapp_spaceintern.data.local.data_store.DataStoreManager
 import com.example.chatapp_spaceintern.domain.local.repository.DataStoreRepository
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.flow.map
-import java.io.IOException
 
 
-class DataStoreRepositoryImpl(private val dataStorePreferences: DataStore<Preferences>) :
+class DataStoreRepositoryImpl(private val dataStorePreferences: DataStoreManager) :
     DataStoreRepository {
 
     override suspend fun putString(dayMode: String) {
@@ -26,17 +20,10 @@ class DataStoreRepositoryImpl(private val dataStorePreferences: DataStore<Prefer
 
     override suspend fun getString(): Result<String> {
         return Result.runCatching {
-            val flow = dataStorePreferences.data.catch {
-                if (it is IOException) {
-                    emit(emptyPreferences())
-                } else {
-                    throw it
-                }
-            }.map {
-                it[stringPreferencesKey(STRING_KEY)]
+            return Result.runCatching {
+                val flow = dataStorePreferences.getFlow(stringPreferencesKey(STRING_KEY))
+                flow.firstOrNull() ?: ""
             }
-            val value = flow.firstOrNull() ?: ""
-            value
         }
     }
 

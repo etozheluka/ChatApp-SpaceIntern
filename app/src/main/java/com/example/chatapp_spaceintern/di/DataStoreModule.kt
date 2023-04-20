@@ -1,16 +1,23 @@
 package com.example.chatapp_spaceintern.di
 
+import android.content.Context
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStoreFile
-import org.koin.android.ext.koin.androidApplication
+import androidx.datastore.preferences.preferencesDataStore
+import com.example.chatapp_spaceintern.data.local.data_store.DataStoreManager
 import org.koin.dsl.module
 
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+    name = "darkMode_preference"
+)
+
+private fun provideDataStore(context: Context): DataStore<Preferences> {
+    return context.dataStore
+}
+
+
 val dataStoreModule = module {
-    single<DataStore<Preferences>> {
-        PreferenceDataStoreFactory.create(
-            produceFile = { androidApplication().preferencesDataStoreFile("darkMode_preference") }
-        )
-    }
+    single { provideDataStore(get()) }
+    single { DataStoreManager(get()) }
 }
