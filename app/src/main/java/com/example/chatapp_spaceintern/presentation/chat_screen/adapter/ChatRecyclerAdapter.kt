@@ -1,4 +1,4 @@
-package com.example.chatapp_spaceintern.presentation.adapter
+package com.example.chatapp_spaceintern.presentation.chat_screen.adapter
 
 
 import android.view.LayoutInflater

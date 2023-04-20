@@ -1,23 +1,26 @@
-package com.example.chatapp_spaceintern.presentation.ui.chat_fragment
+package com.example.chatapp_spaceintern.presentation.chat_screen.ui
 
 import androidx.lifecycle.lifecycleScope
 import com.example.chatapp_spaceintern.R
 import com.example.chatapp_spaceintern.databinding.FragmentChatBinding
 import com.example.chatapp_spaceintern.domain.model.MessageModel
-import com.example.chatapp_spaceintern.presentation.adapter.ChatRecyclerAdapter
 import com.example.chatapp_spaceintern.presentation.base.BaseFragment
 import com.example.chatapp_spaceintern.presentation.base.Inflate
+import com.example.chatapp_spaceintern.presentation.chat_screen.adapter.ChatRecyclerAdapter
+import com.example.chatapp_spaceintern.presentation.chat_screen.viewmodel.ChatFragmentViewModel
 import com.example.chatapp_spaceintern.presentation.model.UserEnum
 import com.example.chatapp_spaceintern.utils.extension.currentTime
 import com.example.chatapp_spaceintern.utils.extension.isNetworkAvailable
 import com.example.chatapp_spaceintern.utils.extension.toastMessage
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.reflect.KClass
 
 
-class ChatFragment() : BaseFragment<FragmentChatBinding, ChatFragmentViewModel>() {
+class ChatFragment : BaseFragment<FragmentChatBinding, ChatFragmentViewModel>() {
 
-    override val viewModel by viewModel<ChatFragmentViewModel>()
+    override val viewModelClass: KClass<ChatFragmentViewModel>
+        get() = ChatFragmentViewModel::class
+
 
     private val adapter by lazy {
         if (tag == UserEnum.TOP_USER.user) ChatRecyclerAdapter(UserEnum.TOP_USER.user) else ChatRecyclerAdapter(
@@ -31,14 +34,14 @@ class ChatFragment() : BaseFragment<FragmentChatBinding, ChatFragmentViewModel>(
 
 
     override fun onBind(viewModel: ChatFragmentViewModel) {
-        initRecycler()
+        initRecycler(viewModel)
         binding.imageBtnView.setOnClickListener {
-            saveMessageModel()
+            saveMessageModel(viewModel)
         }
     }
 
 
-    override fun saveMessageModel() {
+    private fun saveMessageModel(viewModel: ChatFragmentViewModel) {
         if (requireContext().isNetworkAvailable()) {
             sendMessage(
                 MessageModel(
@@ -46,7 +49,7 @@ class ChatFragment() : BaseFragment<FragmentChatBinding, ChatFragmentViewModel>(
                     sender = if (tag == UserEnum.TOP_USER.user) UserEnum.TOP_USER.user else UserEnum.BOTTOM_USER.user,
                     message = binding.inputEditText.text.toString(),
                     time = currentTime()
-                )
+                ), viewModel
             )
         } else {
             requireContext().toastMessage(getString(R.string.check_your_internet))
@@ -55,20 +58,20 @@ class ChatFragment() : BaseFragment<FragmentChatBinding, ChatFragmentViewModel>(
         binding.inputEditText.text?.clear()
     }
 
-    override fun initRecycler() {
+    private fun initRecycler(viewModel: ChatFragmentViewModel) {
         binding.topRecycler.adapter = adapter
-        showMessages()
+        showMessages(viewModel)
     }
 
-    override fun showMessages() {
+    private fun showMessages(viewModel: ChatFragmentViewModel) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.showMessages().collect {
-                adapter.submitList(it)
+                adapter.submitList(it) //TODO -> Recycler Adapter
             }
         }
     }
 
-    override fun sendMessage(messageModel: MessageModel) {
+    private fun sendMessage(messageModel: MessageModel, viewModel: ChatFragmentViewModel) {
         viewModel.sendMessage(messageModel)
     }
 

@@ -7,22 +7,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
-import com.example.chatapp_spaceintern.domain.model.MessageModel
+import org.koin.androidx.viewmodel.ext.android.viewModelForClass
+import kotlin.reflect.KClass
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
-abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(
-) : Fragment() {
+abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
+
+    abstract val viewModelClass: KClass<VM>
+    private val viewModel: VM by viewModelForClass(clazz = viewModelClass)
 
     private var _binding: VB? = null
     protected val binding get() = _binding!!
-    protected abstract val viewModel: VM
 
-    abstract fun initRecycler()
-    abstract fun showMessages()
     abstract fun onBind(viewModel: VM)
-    abstract fun sendMessage(messageModel: MessageModel)
-    abstract fun saveMessageModel()
     abstract fun inflate(): Inflate<VB>
 
     override fun onCreateView(

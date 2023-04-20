@@ -54,12 +54,13 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     //koin
-    implementation "io.insert-koin:koin-core:3.4.0"
     implementation "io.insert-koin:koin-android:3.4.0"
+
 
     //Room
     implementation "androidx.room:room-runtime:2.4.3"
     annotationProcessor "androidx.room:room-compiler:2.4.3"
     kapt "androidx.room:room-compiler:2.4.3"
     implementation "androidx.room:room-ktx:2.4.3"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.8.10"
 }

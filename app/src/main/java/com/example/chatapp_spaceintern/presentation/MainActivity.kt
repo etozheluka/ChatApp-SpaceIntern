@@ -7,7 +7,7 @@ import com.example.chatapp_spaceintern.R
 import com.example.chatapp_spaceintern.databinding.ActivityMainBinding
 import com.example.chatapp_spaceintern.utils.ThemeModeEnum
 import com.example.chatapp_spaceintern.presentation.model.UserEnum
-import com.example.chatapp_spaceintern.presentation.ui.chat_fragment.ChatFragment
+import com.example.chatapp_spaceintern.presentation.chat_screen.ui.ChatFragment
 import com.example.chatapp_spaceintern.utils.extension.getDrawable
 import com.example.chatapp_spaceintern.utils.extension.launchWithLifecycle
 import org.koin.androidx.viewmodel.ext.android.viewModel

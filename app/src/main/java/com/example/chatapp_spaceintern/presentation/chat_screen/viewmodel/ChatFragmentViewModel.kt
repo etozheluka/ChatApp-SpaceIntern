@@ -1,4 +1,4 @@
-package com.example.chatapp_spaceintern.presentation.ui.chat_fragment
+package com.example.chatapp_spaceintern.presentation.chat_screen.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
