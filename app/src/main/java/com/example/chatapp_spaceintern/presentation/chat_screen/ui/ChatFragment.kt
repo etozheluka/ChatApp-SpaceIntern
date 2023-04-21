@@ -9,9 +9,12 @@ import com.example.chatapp_spaceintern.presentation.base.Inflate
 import com.example.chatapp_spaceintern.presentation.chat_screen.adapter.ChatRecyclerAdapter
 import com.example.chatapp_spaceintern.presentation.chat_screen.viewmodel.ChatFragmentViewModel
 import com.example.chatapp_spaceintern.presentation.model.UserEnum
-import com.example.chatapp_spaceintern.utils.extension.currentTime
+import com.example.chatapp_spaceintern.utils.extension.getCurrentTime
 import com.example.chatapp_spaceintern.utils.extension.isNetworkAvailable
+import com.example.chatapp_spaceintern.utils.extension.lifecycleScope
 import com.example.chatapp_spaceintern.utils.extension.toastMessage
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlin.reflect.KClass
 
@@ -21,26 +24,17 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatFragmentViewModel>() 
     override val viewModelClass: KClass<ChatFragmentViewModel>
         get() = ChatFragmentViewModel::class
 
-
     private val adapter by lazy {
         if (tag == UserEnum.TOP_USER.user) ChatRecyclerAdapter(UserEnum.TOP_USER.user) else ChatRecyclerAdapter(
             UserEnum.BOTTOM_USER.user
         )
     }
 
-    private fun provideMessageModel(text:String) = MessageModel(
-        id = null,
-        sender = if (tag == UserEnum.TOP_USER.user) UserEnum.TOP_USER.user else UserEnum.BOTTOM_USER.user,
-        message = text,
-        time = currentTime()
-    )
-
     override fun inflate(): Inflate<FragmentChatBinding> {
         return FragmentChatBinding::inflate
     }
 
-
-    override fun onBind(viewModel: ChatFragmentViewModel) {
+    override fun onBindViewModel(viewModel: ChatFragmentViewModel) {
 
         initRecycler(viewModel)
         binding.imageBtnView.setOnClickListener {
@@ -54,9 +48,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatFragmentViewModel>() 
     }
 
     private fun saveMessageModel(viewModel: ChatFragmentViewModel) {
-        if (requireContext().isNetworkAvailable()) {
-            sendMessage(provideMessageModel(binding.inputEditText.text.toString()), viewModel)
-        }
+        viewModel.sendMessage(provideMessageModel(binding.inputEditText.text.toString()))
         binding.inputEditText.text?.clear()
     }
 
@@ -66,20 +58,30 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatFragmentViewModel>() 
     }
 
     private fun showMessages(viewModel: ChatFragmentViewModel) {
-        viewLifecycleOwner.lifecycleScope.launch {
+        lifecycleScope {
             viewModel.showMessages().collect {
                 adapter.submitList(it)
             }
         }
     }
 
-    private fun sendMessage(messageModel: MessageModel, viewModel: ChatFragmentViewModel) {
-        viewModel.sendMessage(messageModel)
-    }
+    private fun provideMessageModel(text: String) = MessageModel(
+        id = null,
+        sender = if (tag == UserEnum.TOP_USER.user) UserEnum.TOP_USER.user else UserEnum.BOTTOM_USER.user,
+        message = text,
+        time = getCurrentTime()
+    )
 
-    private fun sendNoInternetMessage(){
+    private fun sendNoInternetMessage() {
         requireContext().toastMessage(getString(R.string.check_your_internet))
-        val list = listOf(provideMessageModel(binding.inputEditText.text.toString()))
-        adapter.submitList(list)
+        val flow = flow {
+            emit(provideMessageModel(binding.inputEditText.text.toString()))
+        }
+        lifecycleScope {
+            flow.collect {
+                adapter.submitList(listOf(it))
+            }
+        }
+
     }
 }

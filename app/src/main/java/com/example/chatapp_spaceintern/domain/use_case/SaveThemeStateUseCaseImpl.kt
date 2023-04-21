@@ -3,13 +3,10 @@ package com.example.chatapp_spaceintern.domain.use_case
 import com.example.chatapp_spaceintern.domain.local.repository.DataStoreRepository
 import com.example.chatapp_spaceintern.utils.ThemeModeEnum
 
-class DayNightPreferencesUseCase(private val dataStoreRepository: DataStoreRepository) {
+class SaveThemeStateUseCaseImpl(private val dataStoreRepository: DataStoreRepository) :
+    SaveThemeStateUseCase {
 
-    suspend fun setMode(dayMode: ThemeModeEnum) {
+    override suspend fun invoke(dayMode: ThemeModeEnum) {
         return dataStoreRepository.putThemeStateValue(dayMode)
-    }
-
-    suspend fun getMode(): Result<String> {
-        return dataStoreRepository.getThemeStateValue()
     }
 }

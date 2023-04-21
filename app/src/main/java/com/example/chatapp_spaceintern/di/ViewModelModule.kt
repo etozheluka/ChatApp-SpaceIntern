@@ -12,6 +12,6 @@ val viewModelModule = module {
     }
 
     viewModel {
-        MainActivityViewModel(get())
+        MainActivityViewModel(get(),get())
     }
 }

@@ -20,7 +20,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
     private var _binding: VB? = null
     protected val binding get() = _binding!!
 
-    abstract fun onBind(viewModel: VM)
+    abstract fun onBindViewModel(viewModel: VM)
     abstract fun inflate(): Inflate<VB>
 
     override fun onCreateView(
@@ -36,7 +36,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        onBind(viewModel)
+        onBindViewModel(viewModel)
     }
 
     override fun onDestroyView() {
