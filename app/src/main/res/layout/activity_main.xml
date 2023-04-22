@@ -3,8 +3,8 @@
     android:id="@+id/layoutView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="?attr/background"
+    android:orientation="vertical"
     android:weightSum="2">
 
     <androidx.appcompat.widget.Toolbar
@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="@dimen/dimen_20dp"
             android:background="@drawable/day_night_switch" />
     </androidx.appcompat.widget.Toolbar>
 

@@ -26,12 +26,12 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputEditText"
+            style="@style/InputBasicSetting"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/enter_your_text"
             android:maxLines="5"
             android:paddingEnd="@dimen/dimen_56dp"
-            style="@style/InputBasicSetting"
             android:textColorHint="@color/grey_200" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,6 +56,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:reverseLayout="false"
-        app:stackFromEnd="true"
-        tools:listitem="@layout/send_to_message" />
+        app:stackFromEnd="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>

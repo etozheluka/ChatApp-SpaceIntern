@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/sendToTextView"
+        style="@style/mediumMyriadGeo_Normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_18dp"
+        android:layout_marginVertical="@dimen/dimen_16dp"
+        android:layout_marginBottom="@dimen/dimen_15dp"
+        android:backgroundTint="@color/purple_light"
+        android:maxWidth="@dimen/dimen_300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/rectangleImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_18dp"
+        android:layout_marginBottom="@dimen/dimen_5dp"
+        android:src="@drawable/rectangle_small_bubbles"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/dateTextViewTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_6dp"
+        android:layout_marginBottom="@dimen/dimen_5dp"
+        android:fontFamily="@font/myriad_geo"
+        android:textColor="@color/grey_200"
+        android:textSize="@dimen/mediumMyriadGeo_Text_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rectangleImageView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

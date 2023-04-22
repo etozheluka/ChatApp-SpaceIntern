@@ -1,5 +1,7 @@
 package com.space.chatapp.presentation.chat_screen.ui
 
+import android.util.Log
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.space.chatapp.R
 import com.space.chatapp.databinding.FragmentChatBinding
 import com.space.chatapp.domain.model.MessageModel
@@ -22,9 +24,8 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
         get() = ChatViewModel::class
 
     private val adapter by lazy {
-        if (tag == UserEnum.TOP_USER.user) ChatRecyclerAdapter(UserEnum.TOP_USER.user) else ChatRecyclerAdapter(
-            UserEnum.BOTTOM_USER.user
-        )
+        ChatRecyclerAdapter(tag?.let { UserEnum.valueOf(it) })
+
     }
 
     override fun inflate(): Inflate<FragmentChatBinding> {
@@ -64,7 +65,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
 
     private fun provideMessageModel(text: String) = MessageModel(
         id = null,
-        sender = if (tag == UserEnum.TOP_USER.user) UserEnum.TOP_USER.user else UserEnum.BOTTOM_USER.user,
+        sender = tag,
         message = text,
         time = getCurrentTime()
     )
