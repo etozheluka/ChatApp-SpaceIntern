@@ -9,7 +9,7 @@ import com.space.chatapp.utils.extension.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
-class MainActivityViewModel(
+class MainViewModel(
     private val saveThemeStateUseCase: SaveThemeStateUseCase,
     private val getThemeStateUseCase: GetThemeStateUseCase
 ) :

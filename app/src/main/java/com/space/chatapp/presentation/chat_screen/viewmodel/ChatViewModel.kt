@@ -7,7 +7,7 @@ import com.space.chatapp.domain.use_case.ShowMessageUseCase
 import com.space.chatapp.utils.extension.viewModelScope
 import kotlinx.coroutines.flow.Flow
 
-class ChatFragmentViewModel(
+class ChatViewModel(
     private val sendMessageUseCase: SendMessageUseCase,
     private val showMessageUseCase: ShowMessageUseCase,
 

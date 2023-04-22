@@ -6,7 +6,7 @@ import com.space.chatapp.domain.model.MessageModel
 import com.space.chatapp.presentation.base.BaseFragment
 import com.space.chatapp.presentation.base.Inflate
 import com.space.chatapp.presentation.chat_screen.adapter.ChatRecyclerAdapter
-import com.space.chatapp.presentation.chat_screen.viewmodel.ChatFragmentViewModel
+import com.space.chatapp.presentation.chat_screen.viewmodel.ChatViewModel
 import com.space.chatapp.presentation.model.UserEnum
 import com.space.chatapp.utils.extension.getCurrentTime
 import com.space.chatapp.utils.extension.isNetworkAvailable
@@ -16,10 +16,10 @@ import kotlinx.coroutines.flow.flow
 import kotlin.reflect.KClass
 
 
-class ChatFragment : BaseFragment<FragmentChatBinding, ChatFragmentViewModel>() {
+class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
 
-    override val viewModelClass: KClass<ChatFragmentViewModel>
-        get() = ChatFragmentViewModel::class
+    override val viewModelClass: KClass<ChatViewModel>
+        get() = ChatViewModel::class
 
     private val adapter by lazy {
         if (tag == UserEnum.TOP_USER.user) ChatRecyclerAdapter(UserEnum.TOP_USER.user) else ChatRecyclerAdapter(
@@ -31,7 +31,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatFragmentViewModel>() 
         return FragmentChatBinding::inflate
     }
 
-    override fun onBindViewModel(viewModel: ChatFragmentViewModel) {
+    override fun onBindViewModel(viewModel: ChatViewModel) {
 
         initRecycler(viewModel)
         binding.imageBtnView.setOnClickListener {
@@ -44,17 +44,17 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatFragmentViewModel>() 
 
     }
 
-    private fun saveMessageModel(viewModel: ChatFragmentViewModel) {
+    private fun saveMessageModel(viewModel: ChatViewModel) {
         viewModel.sendMessage(provideMessageModel(binding.inputEditText.text.toString()))
         binding.inputEditText.text?.clear()
     }
 
-    private fun initRecycler(viewModel: ChatFragmentViewModel) {
+    private fun initRecycler(viewModel: ChatViewModel) {
         binding.topRecycler.adapter = adapter
         showMessages(viewModel)
     }
 
-    private fun showMessages(viewModel: ChatFragmentViewModel) {
+    private fun showMessages(viewModel: ChatViewModel) {
         lifecycleScope {
             viewModel.showMessages().collect {
                 adapter.submitList(it)
