@@ -35,10 +35,10 @@ class ChatRecyclerAdapter(private val sender: UserEnum) :
             sendToTextView.text = item.message
             dateTextViewTo.text = item.time!!.convertTimeToPattern()
             val color =
-                if (sender.name == item.sender) R.color.purple_light else R.color.darker_white
+                if (sender.name == item.sender!!.name) R.color.purple_light else R.color.darker_white
             rectangleImageView.setTint(color)
             sendToTextView.setTint(color)
-            root.scaleX = if (sender.name == item.sender) 1f else -1f
+            root.scaleX = if (sender.name == item.sender.name) 1f else -1f
             sendToTextView.scaleX = root.scaleX
             dateTextViewTo.scaleX = root.scaleX
         }

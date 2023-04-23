@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.space.chatapp.domain.model.MessageModel
 import com.space.chatapp.domain.use_case.SendMessageUseCase
 import com.space.chatapp.domain.use_case.ShowMessageUseCase
+import com.space.chatapp.presentation.model.UserEnum
 import com.space.chatapp.utils.extension.getTimeInMills
 import com.space.chatapp.utils.extension.viewModelScope
 import kotlinx.coroutines.flow.Flow
@@ -18,19 +19,19 @@ class ChatViewModel(
     private var _messages = MutableSharedFlow<MessageModel?>()
     val messages get() = _messages.asSharedFlow()
 
-    private fun provideMessageModel(editTextInput: String, tag: String) = MessageModel(
+    private fun provideMessageModel(editTextInput: String, tag: UserEnum) = MessageModel(
         id = null, sender = tag, message = editTextInput, time = getTimeInMills()
     )
 
     fun showMessages(): Flow<List<MessageModel>> = showMessageUseCase.invoke()
 
-    fun sendMessage(editTextInput: String, tag: String) {
+    fun sendMessage(editTextInput: String, tag: UserEnum) {
         viewModelScope {
             sendMessageUseCase.invoke(provideMessageModel(editTextInput, tag))
         }
     }
 
-    fun sendNoInternetMessage(inputText: String, tag: String) {
+    fun sendNoInternetMessage(inputText: String, tag: UserEnum) {
         viewModelScope {
             _messages.emit(
                 provideMessageModel(

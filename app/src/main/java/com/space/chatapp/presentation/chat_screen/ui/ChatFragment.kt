@@ -43,7 +43,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
     private fun saveMessageModel(viewModel: ChatViewModel) {
         binding.inputEditText.ifNotEmpty { text ->
             viewModel.sendMessage(
-                text, tag.toString()
+                text, UserEnum.valueOf(tag.toString())
             )
         }
     }
@@ -52,7 +52,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
         binding.inputEditText.ifNotEmpty { text ->
             lifecycleScope {
                 with(viewModel) {
-                    sendNoInternetMessage(text, tag.toString())
+                    sendNoInternetMessage(text, UserEnum.valueOf(tag.toString()))
                     messages.collect { adapter.submitList(listOf(it)) }
                 }
             }

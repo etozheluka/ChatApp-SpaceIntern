@@ -3,6 +3,7 @@ package com.space.chatapp.data.local.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.space.chatapp.presentation.model.UserEnum
 
 
 @Entity(tableName = "message_store")
@@ -11,7 +12,7 @@ data class ChatEntity(
     @ColumnInfo(name = "id")
     val id: Int?,
     @ColumnInfo(name = "sender")
-    val sender: String?,
+    val sender: UserEnum?,
     @ColumnInfo(name = "message")
     val message: String?,
     @ColumnInfo(name = "time")
