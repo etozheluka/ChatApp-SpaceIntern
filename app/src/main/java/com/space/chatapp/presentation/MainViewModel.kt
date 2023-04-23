@@ -26,27 +26,26 @@ class MainViewModel(
         }
     }
 
-
     fun dayNightHandling() {
         viewModelScope {
-            val mode = getThemeStateValue()
-            if (mode.getOrNull() == ThemeModeEnum.DAY_MODE.mode) {
-                _state.emit(StateHolder(ThemeModeEnum.NIGHT_MODE.mode))
-                saveThemeStateValue(ThemeModeEnum.NIGHT_MODE)
-            } else {
-                _state.emit(StateHolder(ThemeModeEnum.DAY_MODE.mode))
-                saveThemeStateValue(ThemeModeEnum.DAY_MODE)
+            when (getThemeStateValue().getOrNull()) {
+                ThemeModeEnum.DAY_MODE.name -> {
+                    _state.emit(StateHolder(ThemeModeEnum.NIGHT_MODE.name))
+                    saveThemeStateValue(ThemeModeEnum.NIGHT_MODE)
+                }
+                else -> {
+                    _state.emit(StateHolder(ThemeModeEnum.DAY_MODE.name))
+                    saveThemeStateValue(ThemeModeEnum.DAY_MODE)
+                }
             }
         }
     }
 
     fun checkPreferencesStatus() {
         viewModelScope {
-            val mode = getThemeStateValue()
-            if (mode.getOrNull() == ThemeModeEnum.DAY_MODE.mode) {
-                _state.emit(StateHolder(ThemeModeEnum.DAY_MODE.mode))
-            } else {
-                _state.emit(StateHolder(ThemeModeEnum.NIGHT_MODE.mode))
+            when (getThemeStateValue().getOrNull()) {
+                ThemeModeEnum.DAY_MODE.name -> _state.emit(StateHolder(ThemeModeEnum.DAY_MODE.name))
+                else -> _state.emit(StateHolder(ThemeModeEnum.NIGHT_MODE.name))
             }
         }
     }

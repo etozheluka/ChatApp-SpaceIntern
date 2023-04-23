@@ -6,6 +6,7 @@ import com.space.chatapp.presentation.base.Inflate
 import com.space.chatapp.presentation.chat_screen.adapter.ChatRecyclerAdapter
 import com.space.chatapp.presentation.chat_screen.viewmodel.ChatViewModel
 import com.space.chatapp.presentation.model.UserEnum
+import com.space.chatapp.utils.extension.ifNotEmpty
 import com.space.chatapp.utils.extension.isNetworkAvailable
 import com.space.chatapp.utils.extension.lifecycleScope
 import kotlin.reflect.KClass
@@ -28,11 +29,11 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
     override fun onBindViewModel(viewModel: ChatViewModel) {
         with(viewModel) {
             initRecycler(this)
-            binding.imageBtnView.setOnClickListener {
+            binding.sendBtn.setOnClickListener {
                 if (requireContext().isNetworkAvailable()) {
-                    saveMessageModel(viewModel)
+                    saveMessageModel(this)
                 } else {
-                    sendNoInternetMessage(viewModel)
+                    sendNoInternetMessage(this)
                 }
                 binding.inputEditText.text?.clear()
             }
@@ -40,18 +41,20 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
     }
 
     private fun saveMessageModel(viewModel: ChatViewModel) {
-        with(viewModel) {
-            sendMessage(
-                binding.inputEditText.text.toString(), tag.toString()
+        binding.inputEditText.ifNotEmpty { text ->
+            viewModel.sendMessage(
+                text, tag.toString()
             )
         }
     }
 
     private fun sendNoInternetMessage(viewModel: ChatViewModel) {
-        lifecycleScope {
-            viewModel.sendNoInternetMessage(binding.inputEditText.text.toString(), tag.toString())
-            viewModel.messages.collect {
-                adapter.submitList(listOf(it))
+        binding.inputEditText.ifNotEmpty { text ->
+            lifecycleScope {
+                with(viewModel) {
+                    sendNoInternetMessage(text, tag.toString())
+                    messages.collect { adapter.submitList(listOf(it)) }
+                }
             }
         }
     }

@@ -12,7 +12,7 @@ class DataStoreManager(private val dataStore: DataStore<Preferences>) {
 
     suspend fun saveValue(key: String, dayMode: ThemeModeEnum) {
         dataStore.edit { preferences ->
-            preferences[stringPreferencesKey(key)] = dayMode.mode
+            preferences[stringPreferencesKey(key)] = dayMode.name
         }
     }
 

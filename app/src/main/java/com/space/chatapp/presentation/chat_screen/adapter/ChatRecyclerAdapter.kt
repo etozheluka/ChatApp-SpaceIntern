@@ -10,6 +10,7 @@ import com.space.chatapp.databinding.SendMessageBinding
 import com.space.chatapp.domain.model.MessageModel
 import com.space.chatapp.presentation.model.UserEnum
 import com.space.chatapp.utils.DiffCallback
+import com.space.chatapp.utils.extension.convertTimeToPattern
 import com.space.chatapp.utils.extension.setTint
 
 
@@ -32,7 +33,7 @@ class ChatRecyclerAdapter(private val sender: UserEnum) :
 
         fun bind(sender: UserEnum, item: MessageModel) = with(binding) {
             sendToTextView.text = item.message
-            dateTextViewTo.text = item.time
+            dateTextViewTo.text = item.time!!.convertTimeToPattern()
             val color =
                 if (sender.name == item.sender) R.color.purple_light else R.color.darker_white
             rectangleImageView.setTint(color)

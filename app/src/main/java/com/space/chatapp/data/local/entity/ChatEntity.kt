@@ -15,5 +15,5 @@ data class ChatEntity(
     @ColumnInfo(name = "message")
     val message: String?,
     @ColumnInfo(name = "time")
-    val time: String?,
+    val time: Long?,
 )

@@ -20,5 +20,6 @@
     <color name="dark_yellow200">#F7CE7F</color>
     <color name="dark_yellow500">#FFCA55</color>
     <color name="shaded_white">#EFEFEF</color>
-    <color name="dark_purple_300">#2E0072</color>
+    <color name="dark_purple300">#2E0072</color>
+    <color name="dark_purple200">#2E0072</color>
 </resources>

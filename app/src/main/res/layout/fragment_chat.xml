@@ -14,10 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_16dp"
         android:layout_marginBottom="@dimen/dimen_30dp"
-        app:boxCornerRadiusBottomEnd="@dimen/radius"
-        app:boxCornerRadiusBottomStart="@dimen/radius"
-        app:boxCornerRadiusTopEnd="@dimen/radius"
-        app:boxCornerRadiusTopStart="@dimen/radius"
+        app:boxCornerRadiusBottomEnd="@dimen/dimen_28dp"
+        app:boxCornerRadiusBottomStart="@dimen/dimen_28dp"
+        app:boxCornerRadiusTopEnd="@dimen/dimen_28dp"
+        app:boxCornerRadiusTopStart="@dimen/dimen_28dp"
         app:boxStrokeWidth="@dimen/dimen_1dp"
         app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,17 +26,16 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputEditText"
-            style="@style/InputBasicSetting"
+            style="@style/text_input_style"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/enter_your_text"
             android:maxLines="5"
-            android:paddingEnd="@dimen/dimen_56dp"
-            android:textColorHint="@color/grey_200" />
+            android:paddingEnd="@dimen/dimen_56dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageButton
-        android:id="@+id/imageBtnView"
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/sendBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dimen_15dp"
