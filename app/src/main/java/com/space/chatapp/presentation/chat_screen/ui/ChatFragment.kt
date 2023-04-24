@@ -63,6 +63,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
         lifecycleScope {
             viewModel.showMessages().collect {
                 adapter.submitList(it)
+                binding.chatRecycler.scrollToPosition(adapter.itemCount - 1)
             }
         }
     }
