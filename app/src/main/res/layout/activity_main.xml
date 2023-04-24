@@ -29,7 +29,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_6dp"
-        android:background="@drawable/dividerline" />
+        android:background="@drawable/divider_line" />
 
     <FrameLayout
         android:id="@+id/bottomFragment"

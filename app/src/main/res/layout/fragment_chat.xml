@@ -39,14 +39,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dimen_15dp"
-        android:background="@drawable/sendbtn"
+        android:background="@drawable/send_btn"
         android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="@+id/inputLayout"
         app:layout_constraintEnd_toEndOf="@+id/inputLayout"
         app:layout_constraintTop_toTopOf="@+id/inputLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/topRecycler"
+        android:id="@+id/chatRecycler"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

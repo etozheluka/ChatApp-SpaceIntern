@@ -6,6 +6,7 @@ import com.space.chatapp.domain.use_case.SendMessageUseCase
 import com.space.chatapp.domain.use_case.ShowMessageUseCase
 import com.space.chatapp.presentation.model.UserEnum
 import com.space.chatapp.utils.extension.getTimeInMills
+import com.space.chatapp.utils.extension.ifEmpty
 import com.space.chatapp.utils.extension.viewModelScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -26,18 +27,24 @@ class ChatViewModel(
     fun showMessages(): Flow<List<MessageModel>> = showMessageUseCase.invoke()
 
     fun sendMessage(editTextInput: String, tag: UserEnum) {
-        viewModelScope {
-            sendMessageUseCase.invoke(provideMessageModel(editTextInput, tag))
+        if(!editTextInput.ifEmpty()){
+            viewModelScope {
+                sendMessageUseCase.invoke(provideMessageModel(editTextInput, tag))
+            }
         }
+
     }
 
-    fun sendNoInternetMessage(inputText: String, tag: UserEnum) {
-        viewModelScope {
-            _messages.emit(
-                provideMessageModel(
-                    inputText, tag
+    fun sendNoInternetMessage(editTextInput: String, tag: UserEnum) {
+        if(!editTextInput.ifEmpty()){
+            viewModelScope {
+                _messages.emit(
+                    provideMessageModel(
+                        editTextInput, tag
+                    )
                 )
-            )
+            }
         }
+
     }
 }

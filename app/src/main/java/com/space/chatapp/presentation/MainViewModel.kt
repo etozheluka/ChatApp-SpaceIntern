@@ -3,7 +3,6 @@ package com.space.chatapp.presentation
 import androidx.lifecycle.ViewModel
 import com.space.chatapp.domain.use_case.GetThemeStateUseCase
 import com.space.chatapp.domain.use_case.SaveThemeStateUseCase
-import com.space.chatapp.presentation.model.StateHolder
 import com.space.chatapp.utils.ThemeModeEnum
 import com.space.chatapp.utils.extension.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -15,7 +14,7 @@ class MainViewModel(
 ) :
     ViewModel() {
 
-    private val _state = MutableSharedFlow<StateHolder>()
+    private val _state = MutableSharedFlow<ThemeModeEnum>()
     val state = _state.asSharedFlow()
 
     private suspend fun getThemeStateValue(): Result<String> = getThemeStateUseCase.invoke()
@@ -30,11 +29,11 @@ class MainViewModel(
         viewModelScope {
             when (getThemeStateValue().getOrNull()) {
                 ThemeModeEnum.DAY_MODE.name -> {
-                    _state.emit(StateHolder(ThemeModeEnum.NIGHT_MODE.name))
+                    _state.emit(ThemeModeEnum.NIGHT_MODE)
                     saveThemeStateValue(ThemeModeEnum.NIGHT_MODE)
                 }
                 else -> {
-                    _state.emit(StateHolder(ThemeModeEnum.DAY_MODE.name))
+                    _state.emit(ThemeModeEnum.DAY_MODE)
                     saveThemeStateValue(ThemeModeEnum.DAY_MODE)
                 }
             }
@@ -44,8 +43,8 @@ class MainViewModel(
     fun checkPreferencesStatus() {
         viewModelScope {
             when (getThemeStateValue().getOrNull()) {
-                ThemeModeEnum.DAY_MODE.name -> _state.emit(StateHolder(ThemeModeEnum.DAY_MODE.name))
-                else -> _state.emit(StateHolder(ThemeModeEnum.NIGHT_MODE.name))
+                ThemeModeEnum.DAY_MODE.name -> _state.emit(ThemeModeEnum.DAY_MODE)
+                else -> _state.emit(ThemeModeEnum.NIGHT_MODE)
             }
         }
     }
