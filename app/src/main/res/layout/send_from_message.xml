@@ -13,17 +13,21 @@
         android:layout_marginTop="@dimen/dimen_5dp"
         android:background="@drawable/send_from_rectangle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/dimen_280dp">
 
         <TextView
             android:id="@+id/sendFromTextView"
             style="@style/mediumMyriadGeo_Normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_18dp"
+            android:layout_marginVertical="@dimen/dimen_16dp"
             android:layout_marginStart="@dimen/dimen_18dp"
             android:layout_marginTop="@dimen/dimen_15dp"
             android:layout_marginEnd="@dimen/dimen_18dp"
             android:layout_marginBottom="@dimen/dimen_15dp"
+            android:maxWidth="@dimen/dimen_300dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_6dp"
         android:fontFamily="@font/myriad_geo"
-        android:textColor="@color/dateBasicColor"
+        android:textColor="@color/grey_200"
         android:textSize="@dimen/mediumMyriadGeo_Text_small"
         app:layout_constraintStart_toEndOf="@+id/rectangleImageView"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
