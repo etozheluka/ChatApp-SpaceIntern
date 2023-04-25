@@ -13,7 +13,6 @@ import com.space.chatapp.utils.extension.launchWithLifecycle
 import com.space.chatapp.utils.toAppCompatMode
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 

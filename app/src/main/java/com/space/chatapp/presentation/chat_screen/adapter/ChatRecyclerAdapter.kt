@@ -13,10 +13,8 @@ import com.space.chatapp.utils.DiffCallback
 import com.space.chatapp.utils.extension.convertTimeToPattern
 import com.space.chatapp.utils.extension.setTint
 
-
 class ChatRecyclerAdapter(private val sender: ChatUser) :
     ListAdapter<MessageModel, ChatRecyclerAdapter.ChatViewHolder>(DiffCallback()) {
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         return ChatViewHolder(
@@ -43,7 +41,6 @@ class ChatRecyclerAdapter(private val sender: ChatUser) :
             dateTextViewTo.scaleX = root.scaleX
         }
     }
-
 
     companion object {
         const val SCALE_FACTOR = 1f
