@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.space.chatapp.domain.model.MessageModel
 import com.space.chatapp.domain.use_case.SendMessageUseCase
 import com.space.chatapp.domain.use_case.ShowMessageUseCase
-import com.space.chatapp.presentation.model.UserEnum
+import com.space.chatapp.presentation.model.ChatUser
 import com.space.chatapp.utils.extension.getTimeInMills
 import com.space.chatapp.utils.extension.ifEmpty
 import com.space.chatapp.utils.extension.viewModelScope
@@ -20,13 +20,13 @@ class ChatViewModel(
     private var _messages = MutableSharedFlow<MessageModel?>()
     val messages get() = _messages.asSharedFlow()
 
-    private fun provideMessageModel(editTextInput: String, tag: UserEnum) = MessageModel(
-        id = null, sender = tag, message = editTextInput, time = getTimeInMills()
+    private fun provideMessageModel(editTextInput: String, tag: ChatUser) = MessageModel(
+        sender = tag, message = editTextInput, time = getTimeInMills()
     )
 
     fun showMessages(): Flow<List<MessageModel>> = showMessageUseCase.invoke()
 
-    fun sendMessage(editTextInput: String, tag: UserEnum) {
+    fun sendMessage(editTextInput: String, tag: ChatUser) {
         if(!editTextInput.ifEmpty()){
             viewModelScope {
                 sendMessageUseCase.invoke(provideMessageModel(editTextInput, tag))
@@ -35,7 +35,7 @@ class ChatViewModel(
 
     }
 
-    fun sendNoInternetMessage(editTextInput: String, tag: UserEnum) {
+    fun sendNoInternetMessage(editTextInput: String, tag: ChatUser) {
         if(!editTextInput.ifEmpty()){
             viewModelScope {
                 _messages.emit(

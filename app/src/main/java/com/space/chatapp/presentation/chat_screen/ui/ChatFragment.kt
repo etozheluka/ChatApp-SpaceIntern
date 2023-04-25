@@ -5,7 +5,7 @@ import com.space.chatapp.presentation.base.BaseFragment
 import com.space.chatapp.presentation.base.Inflate
 import com.space.chatapp.presentation.chat_screen.adapter.ChatRecyclerAdapter
 import com.space.chatapp.presentation.chat_screen.viewmodel.ChatViewModel
-import com.space.chatapp.presentation.model.UserEnum
+import com.space.chatapp.presentation.model.ChatUser
 import com.space.chatapp.utils.extension.isNetworkAvailable
 import com.space.chatapp.utils.extension.lifecycleScope
 import kotlin.reflect.KClass
@@ -21,7 +21,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
         get() = ChatViewModel::class
 
     private val adapter by lazy {
-        ChatRecyclerAdapter(UserEnum.valueOf(tag!!))
+        ChatRecyclerAdapter(ChatUser.valueOf(tag!!))
 
     }
 
@@ -41,14 +41,14 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
 
     private fun saveMessageModel(viewModel: ChatViewModel) {
         viewModel.sendMessage(
-            binding.inputEditText.text.toString(), UserEnum.valueOf(tag.toString())
+            binding.inputEditText.text.toString(), ChatUser.valueOf(tag.toString())
         )
     }
 
     private fun sendNoInternetMessage(viewModel: ChatViewModel) {
         lifecycleScope {
             with(viewModel) {
-                sendNoInternetMessage(binding.inputEditText.text.toString(), UserEnum.valueOf(tag.toString()))
+                sendNoInternetMessage(binding.inputEditText.text.toString(), ChatUser.valueOf(tag.toString()))
                 messages.collect { adapter.submitList(listOf(it)) }
             }
         }

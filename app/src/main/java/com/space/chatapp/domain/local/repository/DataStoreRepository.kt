@@ -1,10 +1,10 @@
 package com.space.chatapp.domain.local.repository
 
-import com.space.chatapp.utils.ThemeModeEnum
+import com.space.chatapp.utils.ChatThemeMode
 
 interface DataStoreRepository {
     suspend fun putThemeStateValue(
-        dayMode: ThemeModeEnum
+        dayMode: ChatThemeMode
     )
 
     suspend fun getThemeStateValue(): Result<String>

@@ -4,13 +4,13 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.space.chatapp.utils.ThemeModeEnum
+import com.space.chatapp.utils.ChatThemeMode
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class DataStoreManager(private val dataStore: DataStore<Preferences>) {
 
-    suspend fun saveValue(key: String, dayMode: ThemeModeEnum) {
+    suspend fun saveValue(key: String, dayMode: ChatThemeMode) {
         dataStore.edit { preferences ->
             preferences[stringPreferencesKey(key)] = dayMode.name
         }

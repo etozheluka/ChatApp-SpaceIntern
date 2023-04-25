@@ -2,13 +2,13 @@ package com.space.chatapp.data.repository
 
 import com.space.chatapp.data.local.data_store.DataStoreManager
 import com.space.chatapp.domain.local.repository.DataStoreRepository
-import com.space.chatapp.utils.ThemeModeEnum
+import com.space.chatapp.utils.ChatThemeMode
 import kotlinx.coroutines.flow.firstOrNull
 
 class DataStoreRepositoryImpl(private val dataStorePreferences: DataStoreManager) :
     DataStoreRepository {
 
-    override suspend fun putThemeStateValue(dayMode: ThemeModeEnum) {
+    override suspend fun putThemeStateValue(dayMode: ChatThemeMode) {
         Result.runCatching {
             dataStorePreferences.saveValue(STRING_KEY,dayMode)
         }
