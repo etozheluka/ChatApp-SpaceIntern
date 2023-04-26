@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.firstOrNull
 class ThemeDataStoreRepositoryImpl(private val dataStorePreferences: ThemeDataStoreManager) :
     ThemeDataStoreRepository {
 
-    override suspend fun putThemeStateValue(dayMode: ChatThemeMode) {
+    override suspend fun putThemeStateValue(mode: ChatThemeMode) {
         Result.runCatching {
-            dataStorePreferences.saveValue(STRING_KEY,dayMode)
+            dataStorePreferences.saveValue(STRING_KEY,mode)
         }
     }
 
