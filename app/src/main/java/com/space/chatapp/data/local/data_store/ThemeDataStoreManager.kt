@@ -8,7 +8,7 @@ import com.space.chatapp.utils.ChatThemeMode
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class DataStoreManager(private val dataStore: DataStore<Preferences>) {
+class ThemeDataStoreManager(private val dataStore: DataStore<Preferences>) {
 
     suspend fun saveValue(key: String, dayMode: ChatThemeMode) {
         dataStore.edit { preferences ->

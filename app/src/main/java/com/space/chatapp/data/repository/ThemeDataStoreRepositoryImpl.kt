@@ -1,12 +1,12 @@
 package com.space.chatapp.data.repository
 
-import com.space.chatapp.data.local.data_store.DataStoreManager
-import com.space.chatapp.domain.local.repository.DataStoreRepository
+import com.space.chatapp.data.local.data_store.ThemeDataStoreManager
+import com.space.chatapp.domain.local.repository.ThemeDataStoreRepository
 import com.space.chatapp.utils.ChatThemeMode
 import kotlinx.coroutines.flow.firstOrNull
 
-class DataStoreRepositoryImpl(private val dataStorePreferences: DataStoreManager) :
-    DataStoreRepository {
+class ThemeDataStoreRepositoryImpl(private val dataStorePreferences: ThemeDataStoreManager) :
+    ThemeDataStoreRepository {
 
     override suspend fun putThemeStateValue(dayMode: ChatThemeMode) {
         Result.runCatching {

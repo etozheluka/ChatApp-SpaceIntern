@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface ChatMessageRepository {
 
-    fun getAll(): Flow<List<MessageModel>>
+    fun getAllMessages(): Flow<List<MessageModel>>
 
     suspend fun insertMessage(message: MessageModel)
 }

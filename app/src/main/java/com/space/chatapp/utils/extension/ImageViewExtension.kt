@@ -5,9 +5,9 @@ import android.content.res.ColorStateList
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources
 
-fun ImageView.getDrawable(context: Context, drawable: Int) {
-    background = AppCompatResources.getDrawable(context, drawable)
+fun ImageView.getDrawable(context: Context, drawableRes: Int) {
+    background = AppCompatResources.getDrawable(context, drawableRes)
 }
-fun ImageView.setTint(color:Int){
-    this.imageTintList = ColorStateList.valueOf(this.context.getColor(color))
+fun ImageView.setImageTint(colorRes:Int){
+    this.imageTintList = ColorStateList.valueOf(this.context.getColor(colorRes))
 }

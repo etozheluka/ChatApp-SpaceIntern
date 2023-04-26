@@ -3,7 +3,7 @@ package com.space.chatapp.presentation.chat_screen.ui
 import com.space.chatapp.databinding.FragmentChatBinding
 import com.space.chatapp.presentation.base.BaseFragment
 import com.space.chatapp.presentation.base.Inflate
-import com.space.chatapp.presentation.chat_screen.adapter.ChatRecyclerAdapter
+import com.space.chatapp.presentation.chat_screen.ui.adapter.ChatRecyclerAdapter
 import com.space.chatapp.presentation.chat_screen.viewmodel.ChatViewModel
 import com.space.chatapp.presentation.model.ChatUser
 import com.space.chatapp.utils.extension.isNetworkAvailable

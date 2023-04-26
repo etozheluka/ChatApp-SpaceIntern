@@ -1,5 +1,4 @@
-package com.space.chatapp.presentation.chat_screen.adapter
-
+package com.space.chatapp.presentation.chat_screen.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import com.space.chatapp.domain.model.MessageModel
 import com.space.chatapp.presentation.model.ChatUser
 import com.space.chatapp.utils.DiffCallback
 import com.space.chatapp.utils.extension.convertTimeToPattern
+import com.space.chatapp.utils.extension.setImageTint
 import com.space.chatapp.utils.extension.setTint
 
 class ChatRecyclerAdapter(private val sender: ChatUser) :
@@ -34,7 +34,7 @@ class ChatRecyclerAdapter(private val sender: ChatUser) :
             dateTextViewTo.text = item.time!!.convertTimeToPattern()
             val color =
                 if (sender.name == item.sender!!.name) SENDER_COLOR else RECEIVER_COLOR
-            rectangleImageView.setTint(color)
+            rectangleImageView.setImageTint(color)
             sendToTextView.setTint(color)
             root.scaleX = if (sender.name == item.sender.name) SCALE_FACTOR else FLIPPED_SCALE_FACTOR
             sendToTextView.scaleX = root.scaleX
@@ -43,9 +43,9 @@ class ChatRecyclerAdapter(private val sender: ChatUser) :
     }
 
     companion object {
-        const val SCALE_FACTOR = 1f
-        const val FLIPPED_SCALE_FACTOR = -1f
-        const val SENDER_COLOR = R.color.purple_light
-        const val RECEIVER_COLOR = R.color.darker_white
+        private const val SCALE_FACTOR = 1f
+        private const val FLIPPED_SCALE_FACTOR = -1f
+        private const val SENDER_COLOR = R.color.purple_light
+        private const val RECEIVER_COLOR = R.color.darker_white
     }
 }

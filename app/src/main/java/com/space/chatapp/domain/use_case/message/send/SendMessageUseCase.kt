@@ -1,4 +1,4 @@
-package com.space.chatapp.domain.use_case
+package com.space.chatapp.domain.use_case.message.send
 
 import com.space.chatapp.domain.model.MessageModel
 
