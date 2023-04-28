@@ -33,7 +33,7 @@ class ChatRecyclerAdapter(private val sender: ChatUser) :
             sendToTextView.text = item.message
             dateTextViewTo.text = item.time!!.convertTimeToPattern()
             val color =
-                if (sender.name == item.sender!!.name) SENDER_COLOR else RECEIVER_COLOR
+                if (sender.name == item.sender!!.name) R.color.purple_light else  R.color.darker_white
             rectangleImageView.setImageTint(color)
             sendToTextView.setTint(color)
             root.scaleX = if (sender.name == item.sender.name) SCALE_FACTOR else FLIPPED_SCALE_FACTOR
@@ -45,7 +45,5 @@ class ChatRecyclerAdapter(private val sender: ChatUser) :
     companion object {
         private const val SCALE_FACTOR = 1f
         private const val FLIPPED_SCALE_FACTOR = -1f
-        private const val SENDER_COLOR = R.color.purple_light
-        private const val RECEIVER_COLOR = R.color.darker_white
     }
 }
