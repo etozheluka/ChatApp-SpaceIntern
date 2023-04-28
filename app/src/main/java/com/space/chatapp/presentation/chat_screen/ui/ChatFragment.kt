@@ -5,12 +5,15 @@ import com.space.chatapp.presentation.base.BaseFragment
 import com.space.chatapp.presentation.base.Inflate
 import com.space.chatapp.presentation.chat_screen.ui.adapter.ChatRecyclerAdapter
 import com.space.chatapp.presentation.chat_screen.viewmodel.ChatViewModel
+import com.space.chatapp.presentation.chat_screen.ui.chat_style.ChatStyleConfigurator
 import com.space.chatapp.presentation.model.ChatUser
 import com.space.chatapp.utils.extension.isNetworkAvailable
 import com.space.chatapp.utils.extension.lifecycleScope
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import kotlin.reflect.KClass
 
-class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
+class ChatFragment() : BaseFragment<FragmentChatBinding, ChatViewModel>() {
 
     override fun inflate(): Inflate<FragmentChatBinding> {
         return FragmentChatBinding::inflate
@@ -20,8 +23,9 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
         get() = ChatViewModel::class
 
     private val adapter by lazy {
-        ChatRecyclerAdapter(ChatUser.valueOf(tag!!))
-
+        val sender = ChatUser.valueOf(tag.toString())
+        val chatStyleConfigurator: ChatStyleConfigurator by inject { parametersOf(sender) }
+        ChatRecyclerAdapter(chatStyleConfigurator)
     }
 
     override fun onBindViewModel(viewModel: ChatViewModel) {
@@ -47,7 +51,10 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
     private fun sendNoInternetMessage(viewModel: ChatViewModel) {
         lifecycleScope {
             with(viewModel) {
-                sendNoInternetMessage(binding.inputEditText.text.toString(), ChatUser.valueOf(tag.toString()))
+                sendNoInternetMessage(
+                    binding.inputEditText.text.toString(),
+                    ChatUser.valueOf(tag.toString())
+                )
                 messages.collect { adapter.submitList(listOf(it)) }
             }
         }

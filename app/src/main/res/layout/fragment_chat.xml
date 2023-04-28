@@ -25,6 +25,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+
             android:id="@+id/inputEditText"
             style="@style/text_input_style"
             android:layout_width="match_parent"
@@ -53,6 +54,7 @@
         app:layout_constraintBottom_toTopOf="@+id/inputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/send_message"
         app:layout_constraintTop_toTopOf="parent"
         app:reverseLayout="false"
         app:stackFromEnd="true" />

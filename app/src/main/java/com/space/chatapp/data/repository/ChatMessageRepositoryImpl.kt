@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.map
 
 class ChatMessageRepositoryImpl(private val dao:ChatDao) : ChatMessageRepository {
 
-    override fun getAllMessages() = dao.getAll().map { chat ->
+    override fun getAllMessages() = dao.getAllMessages().map { chat ->
         chat.map {
             it.toModel()
         }
