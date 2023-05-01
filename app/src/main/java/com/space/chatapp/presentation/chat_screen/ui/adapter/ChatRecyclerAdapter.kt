@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.space.chatapp.databinding.SendMessageBinding
+import com.space.chatapp.databinding.ChatMessageViewBinding
 import com.space.chatapp.domain.model.MessageModel
 import com.space.chatapp.presentation.chat_screen.ui.chat_style.ChatStyleConfigurator
 import com.space.chatapp.utils.DiffCallback
@@ -15,7 +15,7 @@ class ChatRecyclerAdapter(private val styleConfigurator: ChatStyleConfigurator) 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         return ChatViewHolder(
-            SendMessageBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            ChatMessageViewBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             styleConfigurator
         )
     }
@@ -24,7 +24,7 @@ class ChatRecyclerAdapter(private val styleConfigurator: ChatStyleConfigurator) 
         holder.bind(getItem(position))
     }
 
-    class ChatViewHolder(private val binding: SendMessageBinding, private val styleConfigurator: ChatStyleConfigurator) :
+    class ChatViewHolder(private val binding: ChatMessageViewBinding, private val styleConfigurator: ChatStyleConfigurator) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: MessageModel) = with(binding) {

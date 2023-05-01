@@ -73,11 +73,11 @@ class ChatHolderActivity : AppCompatActivity() {
     private fun initFragments(savedInstanceState: Bundle?) {
         supportFragmentManager.beginTransaction().apply {
             if (savedInstanceState == null) {
-                add(binding.topFragment.id, ChatFragment(), ChatUser.TOP_USER.name)
-                add(binding.bottomFragment.id, ChatFragment(), ChatUser.BOTTOM_USER.name)
+                add(binding.topFragment.id, ChatFragment(), ChatUser.SENDER.name)
+                add(binding.bottomFragment.id, ChatFragment(), ChatUser.RECEIVER.name)
             } else {
-                replace(binding.topFragment.id, ChatFragment(), ChatUser.TOP_USER.name)
-                replace(binding.bottomFragment.id, ChatFragment(), ChatUser.BOTTOM_USER.name)
+                replace(binding.topFragment.id, ChatFragment(), ChatUser.SENDER.name)
+                replace(binding.bottomFragment.id, ChatFragment(), ChatUser.RECEIVER.name)
             }.commit()
         }
     }
