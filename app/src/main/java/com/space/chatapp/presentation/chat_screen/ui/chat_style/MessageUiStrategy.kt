@@ -14,10 +14,12 @@ interface MessageUiStrategy {
 class SentMessageUiStrategy : MessageUiStrategy {
     override fun setUiElements(binding: ChatMessageViewBinding, item: MessageModel) {
         with(binding) {
+            with(R.color.purple_light) {
+                rectangleBigBubble.setImageTint(this)
+                sendToTextView.setTint(this)
+                rectangleSmallBubble.setImageTint(this)
+            }
             root.layoutDirection = View.LAYOUT_DIRECTION_LTR
-            rectangleBigBubble.setImageTint(R.color.purple_light)
-            sendToTextView.setTint(R.color.purple_light)
-            rectangleSmallBubble.setImageTint(R.color.purple_light)
         }
     }
 }
@@ -25,10 +27,12 @@ class SentMessageUiStrategy : MessageUiStrategy {
 class ReceivedMessageUiStrategy : MessageUiStrategy {
     override fun setUiElements(binding: ChatMessageViewBinding, item: MessageModel) {
         with(binding) {
+            with(R.color.darker_white) {
+                rectangleBigBubble.setImageTint(this)
+                sendToTextView.setTint(this)
+                rectangleSmallBubble.setImageTint(this)
+            }
             root.layoutDirection = View.LAYOUT_DIRECTION_RTL
-            rectangleBigBubble.setImageTint(R.color.darker_white)
-            sendToTextView.setTint(R.color.darker_white)
-            rectangleSmallBubble.setImageTint(R.color.darker_white)
         }
     }
 }
