@@ -6,10 +6,10 @@ import com.space.chatapp.R
 import com.space.chatapp.databinding.ActivityMainBinding
 import com.space.chatapp.presentation.chat_activity.viewmodel.ChatHolderViewModel
 import com.space.chatapp.presentation.chat_screen.ui.ChatFragment
-import com.space.chatapp.presentation.model.ChatScreenId
 import com.space.chatapp.utils.ChatThemeMode
 import com.space.chatapp.utils.extension.getDrawable
 import com.space.chatapp.utils.extension.launchWithLifecycle
+import com.space.chatapp.utils.extension.setFragmentToContainer
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChatHolderActivity : AppCompatActivity() {
@@ -56,10 +56,9 @@ class ChatHolderActivity : AppCompatActivity() {
     }
 
     private fun initFragments() {
-        supportFragmentManager.beginTransaction().apply {
-            replace(binding.topFragment.id, ChatFragment(), ChatScreenId.FIRST_USER_ID)
-            replace(binding.bottomFragment.id, ChatFragment(), ChatScreenId.SECOND_USER_ID)
-            commit()
+        with(binding) {
+            setFragmentToContainer(fragmentContainerFirst, ChatFragment())
+            setFragmentToContainer(fragmentContainerSecond, ChatFragment())
         }
     }
 }
