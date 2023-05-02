@@ -1,5 +1,6 @@
 package com.space.chatapp.presentation.chat_screen.ui
 
+import com.space.chatapp.R
 import com.space.chatapp.databinding.FragmentChatBinding
 import com.space.chatapp.domain.model.MessageModel
 import com.space.chatapp.presentation.base.BaseFragment
@@ -8,13 +9,12 @@ import com.space.chatapp.presentation.chat_screen.ui.adapter.ChatRecyclerAdapter
 import com.space.chatapp.presentation.chat_screen.viewmodel.ChatViewModel
 import com.space.chatapp.utils.extension.isNetworkAvailable
 import com.space.chatapp.utils.extension.lifecycleScope
+import com.space.chatapp.utils.extension.viewBinding
 import kotlin.reflect.KClass
 
-class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
+class ChatFragment : BaseFragment<ChatViewModel>(R.layout.fragment_chat) {
 
-    override fun inflate(): Inflate<FragmentChatBinding> {
-        return FragmentChatBinding::inflate
-    }
+    private val binding by viewBinding(FragmentChatBinding::bind)
 
     override fun userId(): String = tag.toString()
 
@@ -37,7 +37,9 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
 
     private fun saveMessageModel(viewModel: ChatViewModel) {
         viewModel.sendMessage(
-            binding.inputEditText.text.toString(), tag.toString(), requireContext().isNetworkAvailable()
+            binding.inputEditText.text.toString(),
+            tag.toString(),
+            requireContext().isNetworkAvailable()
         )
     }
 

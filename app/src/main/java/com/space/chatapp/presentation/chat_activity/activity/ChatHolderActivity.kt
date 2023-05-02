@@ -10,18 +10,16 @@ import com.space.chatapp.utils.ChatThemeMode
 import com.space.chatapp.utils.extension.getDrawable
 import com.space.chatapp.utils.extension.launchWithLifecycle
 import com.space.chatapp.utils.extension.setFragmentToContainer
+import com.space.chatapp.utils.extension.viewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChatHolderActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
-
+    private val binding by viewBinding(ActivityMainBinding::inflate)
     private val viewModel by viewModel<ChatHolderViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         hideNavBar()
         initFragments()
         observeThemeMode()
