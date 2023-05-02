@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.space.chatapp.R
 import com.space.chatapp.databinding.ActivityMainBinding
 import com.space.chatapp.presentation.chat_activity.viewmodel.ChatHolderViewModel
-import com.space.chatapp.presentation.model.ChatUser
 import com.space.chatapp.presentation.chat_screen.ui.ChatFragment
+import com.space.chatapp.presentation.model.ChatScreenId
 import com.space.chatapp.utils.ChatThemeMode
 import com.space.chatapp.utils.extension.getDrawable
 import com.space.chatapp.utils.extension.launchWithLifecycle
@@ -23,8 +23,7 @@ class ChatHolderActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         hideNavBar()
-        initFragments(savedInstanceState)
-        initThemeSwitcher()
+        initFragments()
         observeThemeMode()
         checkPreferencesStatus()
     }
@@ -42,20 +41,6 @@ class ChatHolderActivity : AppCompatActivity() {
                     ChatThemeMode.DAY_MODE -> R.drawable.day_night_switch
                     ChatThemeMode.NIGHT_MODE -> R.drawable.night_day_switch
                 }
-                binding.dayNightSwitcher.getDrawable(baseContext, resourceId)
-            }
-        }
-    }
-
-    private fun initThemeSwitcher() {
-        launchWithLifecycle {
-            viewModel.state.collect {
-                val resourceId =
-                    if (it == ChatThemeMode.DAY_MODE) {
-                        R.drawable.night_day_switch
-                    } else {
-                        R.drawable.day_night_switch
-                    }
                 with(binding) {
                     dayNightSwitcher.getDrawable(baseContext, resourceId)
                     dayNightSwitcher.setOnClickListener {
@@ -70,15 +55,11 @@ class ChatHolderActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    private fun initFragments(savedInstanceState: Bundle?) {
+    private fun initFragments() {
         supportFragmentManager.beginTransaction().apply {
-            if (savedInstanceState == null) {
-                add(binding.topFragment.id, ChatFragment(), ChatUser.SENDER.name)
-                add(binding.bottomFragment.id, ChatFragment(), ChatUser.RECEIVER.name)
-            } else {
-                replace(binding.topFragment.id, ChatFragment(), ChatUser.SENDER.name)
-                replace(binding.bottomFragment.id, ChatFragment(), ChatUser.RECEIVER.name)
-            }.commit()
+            replace(binding.topFragment.id, ChatFragment(), ChatScreenId.FIRST_USER_ID)
+            replace(binding.bottomFragment.id, ChatFragment(), ChatScreenId.SECOND_USER_ID)
+            commit()
         }
     }
 }

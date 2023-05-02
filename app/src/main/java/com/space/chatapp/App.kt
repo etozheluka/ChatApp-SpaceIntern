@@ -15,7 +15,7 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 dataBaseModule, dataStoreModule, repositoryModule, useCaseModule,
-                viewModelModule, appModule
+                viewModelModule
             )
         }
     }

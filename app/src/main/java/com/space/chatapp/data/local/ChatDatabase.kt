@@ -7,7 +7,7 @@ import com.space.chatapp.data.local.entity.ChatEntity
 
 @Database(
     entities = [ChatEntity::class],
-    version = 13,
+    version = 14,
 )
 abstract class AppDataBase : RoomDatabase() {
 

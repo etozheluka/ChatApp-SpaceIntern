@@ -4,13 +4,9 @@ import com.space.chatapp.databinding.FragmentChatBinding
 import com.space.chatapp.presentation.base.BaseFragment
 import com.space.chatapp.presentation.base.Inflate
 import com.space.chatapp.presentation.chat_screen.ui.adapter.ChatRecyclerAdapter
-import com.space.chatapp.presentation.chat_screen.ui.chat_style.ChatStyleConfigurator
 import com.space.chatapp.presentation.chat_screen.viewmodel.ChatViewModel
-import com.space.chatapp.presentation.model.ChatUser
 import com.space.chatapp.utils.extension.isNetworkAvailable
 import com.space.chatapp.utils.extension.lifecycleScope
-import org.koin.android.ext.android.inject
-import org.koin.core.parameter.parametersOf
 import kotlin.reflect.KClass
 
 class ChatFragment() : BaseFragment<FragmentChatBinding, ChatViewModel>() {
@@ -19,13 +15,13 @@ class ChatFragment() : BaseFragment<FragmentChatBinding, ChatViewModel>() {
         return FragmentChatBinding::inflate
     }
 
+    override fun userId(): String = tag.toString()
+
     override val viewModelClass: KClass<ChatViewModel>
         get() = ChatViewModel::class
 
     private val adapter by lazy {
-        val sender = ChatUser.valueOf(tag.toString())
-        val chatStyleConfigurator: ChatStyleConfigurator by inject { parametersOf(sender) }
-        ChatRecyclerAdapter(chatStyleConfigurator)
+        ChatRecyclerAdapter(listener)
     }
 
     override fun onBindViewModel(viewModel: ChatViewModel) {
@@ -44,7 +40,7 @@ class ChatFragment() : BaseFragment<FragmentChatBinding, ChatViewModel>() {
 
     private fun saveMessageModel(viewModel: ChatViewModel) {
         viewModel.sendMessage(
-            binding.inputEditText.text.toString(), ChatUser.valueOf(tag.toString())
+            binding.inputEditText.text.toString(), tag.toString()
         )
     }
 
@@ -53,7 +49,7 @@ class ChatFragment() : BaseFragment<FragmentChatBinding, ChatViewModel>() {
             with(viewModel) {
                 sendNoInternetMessage(
                     binding.inputEditText.text.toString(),
-                    ChatUser.valueOf(tag.toString())
+                    tag.toString()
                 )
                 messages.collect { adapter.submitList(listOf(it)) }
             }
