@@ -15,29 +15,17 @@ class ChatViewModel(
     private val showMessageUseCase: ShowMessageUseCase,
 ) : ViewModel() {
 
-    private var _messages = MutableSharedFlow<MessageModel?>()
-    val messages get() = _messages.asSharedFlow()
-
-    private fun provideMessageModel(editTextInput: String, tag: String) = MessageModel(
-        sender = tag, message = editTextInput, time = getTimeInMills()
-    )
-
     fun showMessages(): Flow<List<MessageModel>> = showMessageUseCase.invoke()
 
-    fun sendMessage(editTextInput: String, tag: String) {
-        if(editTextInput.isNotEmpty()){
+    fun sendMessage(editTextInput: String, tag: String, isOnline: Boolean) {
+        if (editTextInput.isNotEmpty()) {
             viewModelScope {
-                sendMessageUseCase.invoke(provideMessageModel(editTextInput, tag))
-            }
-        }
-    }
-
-    fun sendNoInternetMessage(editTextInput: String, tag: String) {
-        if(editTextInput.isNotEmpty()){
-            viewModelScope {
-                _messages.emit(
-                    provideMessageModel(
-                        editTextInput, tag
+                sendMessageUseCase.invoke(
+                    MessageModel(
+                        sender = tag,
+                        message = editTextInput,
+                        time = getTimeInMills(),
+                        isOnline = isOnline
                     )
                 )
             }

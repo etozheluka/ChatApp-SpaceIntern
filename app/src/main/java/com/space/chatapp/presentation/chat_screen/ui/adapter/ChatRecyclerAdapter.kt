@@ -1,5 +1,6 @@
 package com.space.chatapp.presentation.chat_screen.ui.adapter
 
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.space.chatapp.databinding.ChatMessageViewBinding
@@ -8,7 +9,7 @@ import com.space.chatapp.presentation.base.AdapterListener
 import com.space.chatapp.presentation.base.BaseChatAdapter
 import com.space.chatapp.presentation.chat_screen.ui.chat_style.ReceivedMessageUiStrategy
 import com.space.chatapp.presentation.chat_screen.ui.chat_style.SentMessageUiStrategy
-import com.space.chatapp.utils.extension.convertTimeToPattern
+import com.space.chatapp.presentation.chat_screen.ui.chat_style.SentNoInternetMessageUiStrategy
 
 
 class ChatRecyclerAdapter(private val listener: AdapterListener) :
@@ -28,15 +29,18 @@ class ChatRecyclerAdapter(private val listener: AdapterListener) :
         )
     }
 
-    class ChatViewHolder(private val binding: ChatMessageViewBinding,private val listener: AdapterListener) :
+    class ChatViewHolder(
+        private val binding: ChatMessageViewBinding,
+        private val listener: AdapterListener
+    ) :
         BaseViewHolder<MessageModel, ChatMessageViewBinding>(binding) {
 
         override fun onBind(item: MessageModel) {
             with(binding) {
                 sendToTextView.text = item.message
-                dateTextViewTo.text = item.time!!.convertTimeToPattern()
+
                 val uiStrategy = if (listener.getUserId() == item.sender) {
-                    SentMessageUiStrategy()
+                    if (item.isOnline) SentMessageUiStrategy() else SentNoInternetMessageUiStrategy()
                 } else {
                     ReceivedMessageUiStrategy()
                 }
