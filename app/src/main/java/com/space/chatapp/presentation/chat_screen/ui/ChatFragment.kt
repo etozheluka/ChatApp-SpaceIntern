@@ -9,7 +9,7 @@ import com.space.chatapp.utils.extension.isNetworkAvailable
 import com.space.chatapp.utils.extension.lifecycleScope
 import kotlin.reflect.KClass
 
-class ChatFragment() : BaseFragment<FragmentChatBinding, ChatViewModel>() {
+class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
 
     override fun inflate(): Inflate<FragmentChatBinding> {
         return FragmentChatBinding::inflate

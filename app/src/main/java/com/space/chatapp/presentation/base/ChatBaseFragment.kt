@@ -14,11 +14,10 @@ typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
 abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
 
-    protected val listener = object : BaseChatAdapter.AdapterListener {
-        override fun getUserId(): String = userId
+    protected val listener = object : AdapterListener {
+        override fun getUserId(): String = userId()
     }
 
-    private val userId get() = userId()
     abstract fun userId(): String
 
     abstract val viewModelClass: KClass<VM>

@@ -4,15 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.space.chatapp.databinding.ChatMessageViewBinding
 import com.space.chatapp.domain.model.MessageModel
+import com.space.chatapp.presentation.base.AdapterListener
 import com.space.chatapp.presentation.base.BaseChatAdapter
 import com.space.chatapp.presentation.chat_screen.ui.chat_style.ReceivedMessageUiStrategy
 import com.space.chatapp.presentation.chat_screen.ui.chat_style.SentMessageUiStrategy
 import com.space.chatapp.utils.extension.convertTimeToPattern
 
 
-class ChatRecyclerAdapter(listener: AdapterListener) :
+class ChatRecyclerAdapter(private val listener: AdapterListener) :
     BaseChatAdapter<MessageModel, ChatMessageViewBinding, ChatRecyclerAdapter.ChatViewHolder>(
-        listener
     ) {
 
     override fun onCreateViewHolder(
@@ -24,14 +24,14 @@ class ChatRecyclerAdapter(listener: AdapterListener) :
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ), listener
         )
     }
 
-    class ChatViewHolder(private val binding: ChatMessageViewBinding) :
+    class ChatViewHolder(private val binding: ChatMessageViewBinding,private val listener: AdapterListener) :
         BaseViewHolder<MessageModel, ChatMessageViewBinding>(binding) {
 
-        override fun onBind(item: MessageModel, listener: AdapterListener) {
+        override fun onBind(item: MessageModel) {
             with(binding) {
                 sendToTextView.text = item.message
                 dateTextViewTo.text = item.time!!.convertTimeToPattern()
