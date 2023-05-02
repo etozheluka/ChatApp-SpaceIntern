@@ -4,8 +4,8 @@ import com.space.chatapp.databinding.FragmentChatBinding
 import com.space.chatapp.presentation.base.BaseFragment
 import com.space.chatapp.presentation.base.Inflate
 import com.space.chatapp.presentation.chat_screen.ui.adapter.ChatRecyclerAdapter
-import com.space.chatapp.presentation.chat_screen.viewmodel.ChatViewModel
 import com.space.chatapp.presentation.chat_screen.ui.chat_style.ChatStyleConfigurator
+import com.space.chatapp.presentation.chat_screen.viewmodel.ChatViewModel
 import com.space.chatapp.presentation.model.ChatUser
 import com.space.chatapp.utils.extension.isNetworkAvailable
 import com.space.chatapp.utils.extension.lifecycleScope

@@ -30,7 +30,7 @@ class ChatRecyclerAdapter(private val styleConfigurator: ChatStyleConfigurator) 
         fun bind(item: MessageModel) = with(binding) {
             sendToTextView.text = item.message
             dateTextViewTo.text = item.time!!.convertTimeToPattern()
-            styleConfigurator.applyStyleToViewHolder(binding, item)
+            styleConfigurator.applyStyle(binding, item)
         }
     }
 }
