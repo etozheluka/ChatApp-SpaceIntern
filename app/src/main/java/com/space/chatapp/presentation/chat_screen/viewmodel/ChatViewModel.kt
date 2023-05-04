@@ -17,6 +17,12 @@ class ChatViewModel(
     private val showMessageUseCase: ShowMessageUseCase,
 ) : ViewModel() {
 
+    fun filterMessages(messages: List<Message>,userId:String): List<Message> {
+        return messages.filter {
+            it.sender == userId || it.isOnline
+        }
+    }
+
     fun showMessages(): Flow<List<Message>> = showMessageUseCase.invoke()
         .map { messageModels ->
             messageModels.map { it.toPresentationModel() }

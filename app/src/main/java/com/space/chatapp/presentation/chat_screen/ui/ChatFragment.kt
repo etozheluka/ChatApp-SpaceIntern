@@ -41,12 +41,6 @@ class ChatFragment : BaseFragment<ChatViewModel>(R.layout.fragment_chat) {
         )
     }
 
-    private fun filterMessages(messages: List<Message>): List<Message> {
-        return messages.filter {
-            it.sender == userId() || it.isOnline
-        }
-    }
-
     private fun initRecycler(viewModel: ChatViewModel) {
         binding.chatRecycler.adapter = adapter
         showMessages(viewModel)
@@ -55,7 +49,7 @@ class ChatFragment : BaseFragment<ChatViewModel>(R.layout.fragment_chat) {
     private fun showMessages(viewModel: ChatViewModel) {
         lifecycleScope {
             viewModel.showMessages().collect {
-                adapter.submitList(filterMessages(it))
+                adapter.submitList(viewModel.filterMessages(it, userId()))
             }
         }
     }
