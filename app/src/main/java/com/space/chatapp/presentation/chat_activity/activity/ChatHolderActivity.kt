@@ -7,10 +7,7 @@ import com.space.chatapp.databinding.ActivityMainBinding
 import com.space.chatapp.presentation.chat_activity.viewmodel.ChatHolderViewModel
 import com.space.chatapp.presentation.chat_screen.ui.ChatFragment
 import com.space.chatapp.utils.ChatThemeMode
-import com.space.chatapp.utils.extension.getDrawable
-import com.space.chatapp.utils.extension.launchWithLifecycle
-import com.space.chatapp.utils.extension.setFragmentToContainer
-import com.space.chatapp.utils.extension.viewBinding
+import com.space.chatapp.utils.extension.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChatHolderActivity : AppCompatActivity() {
@@ -55,8 +52,12 @@ class ChatHolderActivity : AppCompatActivity() {
 
     private fun initFragments() {
         with(binding) {
-            setFragmentToContainer(fragmentContainerFirst, ChatFragment())
-            setFragmentToContainer(fragmentContainerSecond, ChatFragment())
+            val fragmentContainerIds = listOf(
+                fragmentContainerFirst,
+                fragmentContainerSecond)
+            fragmentContainerIds.forEachIndexed { index, fragmentContainer ->
+                setFragmentToContainer(fragmentContainer, ChatFragment(), "fragment_${index + 1}")
+            }
         }
     }
 }

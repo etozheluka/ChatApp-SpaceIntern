@@ -12,16 +12,16 @@ import androidx.viewbinding.ViewBinding
 import kotlin.reflect.KProperty
 import kotlin.properties.ReadOnlyProperty
 
-inline fun <T : ViewBinding> AppCompatActivity.viewBinding(crossinline factory: (LayoutInflater) -> T) =
+inline fun <VB : ViewBinding> AppCompatActivity.viewBinding(crossinline factory: (LayoutInflater) -> VB) =
     lazy(LazyThreadSafetyMode.NONE) {
         factory(layoutInflater)
     }
 
-fun <T : ViewBinding> Fragment.viewBinding(factory: (View) -> T): ReadOnlyProperty<Fragment, T> =
-    object : ReadOnlyProperty<Fragment, T>, DefaultLifecycleObserver {
-        private var binding: T? = null
+fun <VB : ViewBinding> Fragment.viewBinding(factory: (View) -> VB): ReadOnlyProperty<Fragment, VB> =
+    object : ReadOnlyProperty<Fragment, VB>, DefaultLifecycleObserver {
+        private var binding: VB? = null
 
-        override fun getValue(thisRef: Fragment, property: KProperty<*>): T =
+        override fun getValue(thisRef: Fragment, property: KProperty<*>): VB =
             binding ?: factory(requireView()).also {
                 if (viewLifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED)) {
                     viewLifecycleOwner.lifecycle.addObserver(this)
@@ -34,5 +34,5 @@ fun <T : ViewBinding> Fragment.viewBinding(factory: (View) -> T): ReadOnlyProper
         }
     }
 
-inline fun <T : ViewBinding> ViewGroup.viewBinding(factory: (LayoutInflater, ViewGroup, Boolean) -> T) =
+inline fun <VB : ViewBinding> ViewGroup.viewBinding(factory: (LayoutInflater, ViewGroup, Boolean) -> VB) =
     factory(LayoutInflater.from(context), this, false)

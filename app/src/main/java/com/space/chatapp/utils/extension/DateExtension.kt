@@ -8,3 +8,8 @@ fun Long.convertTimeToPattern(): String {
     val dayMonthFormat = SimpleDateFormat("dd/MM, HH:mm", Locale.getDefault())
     return dayMonthFormat.format(calendar.time)
 }
+
+fun convertTimeToLong(time:String): Long {
+    val dayMonthFormat = SimpleDateFormat("dd/MM, HH:mm", Locale.getDefault())
+    return dayMonthFormat.parse(time)?.time ?: 0
+}

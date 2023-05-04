@@ -2,11 +2,10 @@ package com.space.chatapp.presentation.chat_screen.ui
 
 import com.space.chatapp.R
 import com.space.chatapp.databinding.FragmentChatBinding
-import com.space.chatapp.domain.model.MessageModel
 import com.space.chatapp.presentation.base.BaseFragment
-import com.space.chatapp.presentation.base.Inflate
 import com.space.chatapp.presentation.chat_screen.ui.adapter.ChatRecyclerAdapter
 import com.space.chatapp.presentation.chat_screen.viewmodel.ChatViewModel
+import com.space.chatapp.presentation.model.Message
 import com.space.chatapp.utils.extension.isNetworkAvailable
 import com.space.chatapp.utils.extension.lifecycleScope
 import com.space.chatapp.utils.extension.viewBinding
@@ -16,14 +15,13 @@ class ChatFragment : BaseFragment<ChatViewModel>(R.layout.fragment_chat) {
 
     private val binding by viewBinding(FragmentChatBinding::bind)
 
-    override fun userId(): String = tag.toString()
-
     override val viewModelClass: KClass<ChatViewModel>
         get() = ChatViewModel::class
 
     private val adapter by lazy {
         ChatRecyclerAdapter(listener)
     }
+    override fun userId(): String = tag.toString()
 
     override fun onBindViewModel(viewModel: ChatViewModel) {
         with(viewModel) {
@@ -43,7 +41,7 @@ class ChatFragment : BaseFragment<ChatViewModel>(R.layout.fragment_chat) {
         )
     }
 
-    private fun filterMessages(messages: List<MessageModel>): List<MessageModel> {
+    private fun filterMessages(messages: List<Message>): List<Message> {
         return messages.filter {
             it.sender == userId() || it.isOnline
         }
