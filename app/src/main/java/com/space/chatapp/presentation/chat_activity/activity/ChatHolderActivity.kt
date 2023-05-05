@@ -56,7 +56,7 @@ class ChatHolderActivity : AppCompatActivity() {
                 fragmentContainerFirst,
                 fragmentContainerSecond)
             fragmentContainerIds.forEachIndexed { index, fragmentContainer ->
-                setFragmentToContainer(fragmentContainer, ChatFragment(), "fragment_${index + 1}")
+                setFragmentToContainer(fragmentContainer, ChatFragment(), "fragment_${index.inc()}")
             }
         }
     }
