@@ -5,13 +5,15 @@ import com.space.chatapp.databinding.FragmentChatBinding
 import com.space.chatapp.presentation.base.BaseFragment
 import com.space.chatapp.presentation.chat_screen.ui.adapter.ChatRecyclerAdapter
 import com.space.chatapp.presentation.chat_screen.viewmodel.ChatViewModel
-import com.space.chatapp.presentation.model.Message
 import com.space.chatapp.utils.extension.isNetworkAvailable
 import com.space.chatapp.utils.extension.lifecycleScope
 import com.space.chatapp.utils.extension.viewBinding
 import kotlin.reflect.KClass
 
-class ChatFragment : BaseFragment<ChatViewModel>(R.layout.fragment_chat) {
+class ChatFragment : BaseFragment<ChatViewModel>() {
+
+    override val layout: Int
+        get() = R.layout.fragment_chat
 
     private val binding by viewBinding(FragmentChatBinding::bind)
 
