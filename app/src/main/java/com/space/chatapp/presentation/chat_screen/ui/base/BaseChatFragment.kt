@@ -1,6 +1,5 @@
 package com.space.chatapp.presentation.chat_screen.ui.base
 
-
 import com.space.chatapp.R
 import com.space.chatapp.databinding.FragmentChatBinding
 import com.space.chatapp.presentation.base.BaseFragment
