@@ -25,7 +25,6 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-
             android:id="@+id/inputEditText"
             style="@style/text_input_style"
             android:layout_width="match_parent"

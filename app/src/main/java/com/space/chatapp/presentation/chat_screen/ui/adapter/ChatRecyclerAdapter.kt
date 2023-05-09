@@ -4,10 +4,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.space.chatapp.databinding.ChatMessageViewBinding
-import com.space.chatapp.domain.model.MessageModel
-import com.space.chatapp.presentation.chat_screen.ui.chat_style_strategy.ReceivedMessageUiStrategy
-import com.space.chatapp.presentation.chat_screen.ui.chat_style_strategy.SentMessageUiStrategy
-import com.space.chatapp.presentation.chat_screen.ui.chat_style_strategy.SentNoInternetMessageUiStrategy
+import com.space.chatapp.presentation.chat_screen.ui.chat_style_strategy.ReceivedMessageUIStrategy
+import com.space.chatapp.presentation.chat_screen.ui.chat_style_strategy.SentMessageUIStrategy
+import com.space.chatapp.presentation.chat_screen.ui.chat_style_strategy.SentNoInternetMessageUIStrategy
 import com.space.chatapp.presentation.model.Message
 import com.space.chatapp.utils.DiffCallback
 import com.space.chatapp.utils.extension.viewBinding
@@ -33,9 +32,9 @@ class ChatRecyclerAdapter(private val listener: AdapterListener) :
             with(binding) {
                 sendToTextView.text = item.message
                 val uiStrategy = if (listener.getUserId() == item.sender) {
-                    if (item.isOnline) SentMessageUiStrategy() else SentNoInternetMessageUiStrategy()
+                    if (item.isOnline) SentMessageUIStrategy() else SentNoInternetMessageUIStrategy()
                 } else {
-                    ReceivedMessageUiStrategy()
+                    ReceivedMessageUIStrategy()
                 }
                 uiStrategy.setUiElements(binding, item)
             }

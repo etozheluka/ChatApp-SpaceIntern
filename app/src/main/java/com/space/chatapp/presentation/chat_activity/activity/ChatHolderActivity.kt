@@ -18,7 +18,9 @@ class ChatHolderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         hideNavBar()
-        initFragments()
+        if (savedInstanceState == null){
+            initFragments()
+        }
         observeThemeMode()
         checkPreferencesStatus()
     }

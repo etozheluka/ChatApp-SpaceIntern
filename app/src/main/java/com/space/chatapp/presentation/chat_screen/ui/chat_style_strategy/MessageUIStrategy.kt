@@ -5,7 +5,7 @@ import com.space.chatapp.databinding.ChatMessageViewBinding
 import com.space.chatapp.presentation.model.Message
 
 
-interface MessageUiStrategy {
+interface MessageUIStrategy {
     fun setUiElements(binding: ChatMessageViewBinding, item: Message)
 }
 
