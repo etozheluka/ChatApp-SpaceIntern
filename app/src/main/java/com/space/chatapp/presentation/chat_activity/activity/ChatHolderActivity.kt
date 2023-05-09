@@ -11,6 +11,11 @@ import com.space.chatapp.utils.ChatThemeMode
 import com.space.chatapp.utils.extension.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+
+/**
+ * This activity is used to hold the fragments and maintain the theme state
+ */
+
 class ChatHolderActivity : AppCompatActivity() {
     private val binding by viewBinding(ActivityMainBinding::inflate)
     private val viewModel by viewModel<ChatHolderViewModel>()

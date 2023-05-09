@@ -12,6 +12,10 @@ import com.space.chatapp.utils.mapper.toPresentationModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+/**
+ * ViewModel for chat screen
+ */
+
 class ChatViewModel(
     private val sendMessageUseCase: SendMessageUseCase,
     private val showMessageUseCase: ShowMessageUseCase,

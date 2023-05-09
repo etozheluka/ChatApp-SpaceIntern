@@ -8,6 +8,10 @@ import com.space.chatapp.utils.extension.setImageTint
 import com.space.chatapp.utils.extension.setTextColorCompat
 import com.space.chatapp.utils.extension.setTint
 
+/**
+ * Strategy for setting ui elements
+ */
+
 private fun setCommonUiElements(
     binding: ChatMessageViewBinding,
     item: Message,

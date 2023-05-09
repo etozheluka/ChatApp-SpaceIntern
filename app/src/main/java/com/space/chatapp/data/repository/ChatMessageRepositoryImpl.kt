@@ -6,7 +6,9 @@ import com.space.chatapp.utils.mapper.toDomainModel
 import com.space.chatapp.domain.local.repository.ChatMessageRepository
 import com.space.chatapp.domain.model.MessageModel
 import kotlinx.coroutines.flow.map
-
+/**
+ * This class is used to handle the database operations
+ */
 class ChatMessageRepositoryImpl(private val dao:ChatDao) : ChatMessageRepository {
 
     override fun getAllMessages() = dao.getAllMessages().map { chat ->

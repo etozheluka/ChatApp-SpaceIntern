@@ -10,6 +10,9 @@ import com.space.chatapp.utils.toAppCompatMode
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
+/**
+ * This view model is used to handle the theme state and save it to data store
+ */
 class ChatHolderViewModel(
     private val saveThemeStateUseCase: SaveThemeStateUseCase,
     private val getThemeStateUseCase: GetThemeStateUseCase

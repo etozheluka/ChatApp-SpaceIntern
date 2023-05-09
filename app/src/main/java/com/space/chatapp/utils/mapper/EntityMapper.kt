@@ -8,6 +8,11 @@ import com.space.chatapp.utils.extension.convertTimeToPattern
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Mapper for converting data between presentation, domain and data layer
+ */
+
+
 fun MessageModel.toEntity() = ChatEntity(
     id = id,
     sender = sender,
