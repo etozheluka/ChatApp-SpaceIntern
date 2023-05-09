@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.space.chatapp.R
 import com.space.chatapp.databinding.ActivityMainBinding
 import com.space.chatapp.presentation.chat_activity.viewmodel.ChatHolderViewModel
-import com.space.chatapp.presentation.chat_screen.ui.ChatFragment
+import com.space.chatapp.presentation.chat_screen.ui.fragment.ChatFragment1
+import com.space.chatapp.presentation.chat_screen.ui.fragment.ChatFragment2
 import com.space.chatapp.utils.ChatThemeMode
 import com.space.chatapp.utils.extension.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -18,7 +19,7 @@ class ChatHolderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         hideNavBar()
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             initFragments()
         }
         observeThemeMode()
@@ -53,13 +54,7 @@ class ChatHolderActivity : AppCompatActivity() {
     }
 
     private fun initFragments() {
-        with(binding) {
-            val fragmentContainerIds = listOf(
-                fragmentContainerFirst,
-                fragmentContainerSecond)
-            fragmentContainerIds.forEachIndexed { index, fragmentContainer ->
-                setFragmentToContainer(fragmentContainer, ChatFragment(), "fragment_${index.inc()}")
-            }
-        }
+        setFragmentToContainer(binding.fragmentContainerFirst, ChatFragment1())
+        setFragmentToContainer(binding.fragmentContainerSecond, ChatFragment2())
     }
 }

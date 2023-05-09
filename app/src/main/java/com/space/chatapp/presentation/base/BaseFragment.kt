@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.viewbinding.ViewBinding
 import com.space.chatapp.presentation.chat_screen.ui.adapter.AdapterListener
 import org.koin.androidx.viewmodel.ext.android.viewModelForClass
 import kotlin.reflect.KClass
@@ -14,17 +14,12 @@ import kotlin.reflect.KClass
 
 abstract class BaseFragment<VM : ViewModel> : Fragment() {
 
-    protected val listener = object : AdapterListener {
-        override fun getUserId(): String = userId()
-    }
     protected abstract val layout: Int
     abstract val viewModelClass: KClass<VM>
     private val viewModel: VM by viewModelForClass(clazz = viewModelClass)
 
     abstract fun userId(): String
-
     abstract fun onBindViewModel(viewModel: VM)
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
