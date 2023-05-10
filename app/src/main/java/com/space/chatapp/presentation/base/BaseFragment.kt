@@ -19,7 +19,6 @@ abstract class BaseFragment<VM : ViewModel> : Fragment() {
     abstract val viewModelClass: KClass<VM>
     private val viewModel: VM by viewModelForClass(clazz = viewModelClass)
 
-    abstract fun userId(): String
     abstract fun onBindViewModel(viewModel: VM)
 
     override fun onCreateView(
