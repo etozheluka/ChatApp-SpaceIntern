@@ -1,6 +1,7 @@
 package com.space.chatapp.presentation.chat_screen.ui
 
 import com.space.chatapp.databinding.FragmentChatBinding
+import com.space.chatapp.domain.model.MessageModel
 import com.space.chatapp.presentation.base.BaseFragment
 import com.space.chatapp.presentation.base.Inflate
 import com.space.chatapp.presentation.chat_screen.ui.adapter.ChatRecyclerAdapter
@@ -28,11 +29,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
         with(viewModel) {
             initRecycler(this)
             binding.sendBtn.setOnClickListener {
-                if (requireContext().isNetworkAvailable()) {
-                    saveMessageModel(this)
-                } else {
-                    sendNoInternetMessage(this)
-                }
+                saveMessageModel(this)
                 binding.inputEditText.text?.clear()
             }
         }
@@ -40,19 +37,13 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
 
     private fun saveMessageModel(viewModel: ChatViewModel) {
         viewModel.sendMessage(
-            binding.inputEditText.text.toString(), tag.toString()
+            binding.inputEditText.text.toString(), tag.toString(), requireContext().isNetworkAvailable()
         )
     }
 
-    private fun sendNoInternetMessage(viewModel: ChatViewModel) {
-        lifecycleScope {
-            with(viewModel) {
-                sendNoInternetMessage(
-                    binding.inputEditText.text.toString(),
-                    tag.toString()
-                )
-                messages.collect { adapter.submitList(listOf(it)) }
-            }
+    private fun filterMessages(messages: List<MessageModel>): List<MessageModel> {
+        return messages.filter {
+            it.sender == userId() || it.isOnline
         }
     }
 
@@ -64,7 +55,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
     private fun showMessages(viewModel: ChatViewModel) {
         lifecycleScope {
             viewModel.showMessages().collect {
-                adapter.submitList(it)
+                adapter.submitList(filterMessages(it))
             }
         }
     }

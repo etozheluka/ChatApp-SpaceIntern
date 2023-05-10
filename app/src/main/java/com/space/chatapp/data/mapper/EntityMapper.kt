@@ -8,10 +8,12 @@ fun MessageModel.toEntity() = ChatEntity(
     sender = sender,
     message = message,
     time = time,
+    isOnline = isOnline
 )
 fun ChatEntity.toModel() = MessageModel(
     id = id,
     sender = sender,
     message = message,
     time = time,
+    isOnline = isOnline
 )
