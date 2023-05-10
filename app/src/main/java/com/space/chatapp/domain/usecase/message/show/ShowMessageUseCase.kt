@@ -1,4 +1,4 @@
-package com.space.chatapp.domain.use_case.message.show
+package com.space.chatapp.domain.usecase.message.show
 
 import com.space.chatapp.domain.model.MessageModel
 import kotlinx.coroutines.flow.Flow

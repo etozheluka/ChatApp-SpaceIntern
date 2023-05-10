@@ -10,9 +10,9 @@ import kotlinx.coroutines.flow.map
 
 class ThemeDataStoreManager(private val dataStore: DataStore<Preferences>) {
 
-    suspend fun saveValue(key: String, dayMode: ChatThemeMode) {
+    suspend fun saveValue(key: String, mode: ChatThemeMode) {
         dataStore.edit { preferences ->
-            preferences[stringPreferencesKey(key)] = dayMode.name
+            preferences[stringPreferencesKey(key)] = mode.name
         }
     }
 
