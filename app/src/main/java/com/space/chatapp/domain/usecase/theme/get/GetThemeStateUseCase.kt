@@ -1,4 +1,4 @@
-package com.space.chatapp.domain.use_case.theme.get
+package com.space.chatapp.domain.usecase.theme.get
 
 
 interface GetThemeStateUseCase {

@@ -53,6 +53,7 @@
         app:layout_constraintBottom_toTopOf="@+id/inputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/chat_message_view"
         app:layout_constraintTop_toTopOf="parent"
         app:reverseLayout="false"
         app:stackFromEnd="true" />

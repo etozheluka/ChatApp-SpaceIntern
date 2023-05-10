@@ -1,51 +1,44 @@
 package com.space.chatapp.presentation.chat_screen.ui.adapter
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.space.chatapp.R
-import com.space.chatapp.databinding.SendMessageBinding
-import com.space.chatapp.domain.model.MessageModel
-import com.space.chatapp.presentation.model.ChatUser
+import com.space.chatapp.databinding.ChatMessageViewBinding
+import com.space.chatapp.presentation.chat_screen.ui.chat_style_strategy.ReceivedMessageUIStrategy
+import com.space.chatapp.presentation.chat_screen.ui.chat_style_strategy.SentMessageUIStrategy
+import com.space.chatapp.presentation.chat_screen.ui.chat_style_strategy.SentNoInternetMessageUIStrategy
+import com.space.chatapp.presentation.model.Message
 import com.space.chatapp.utils.DiffCallback
-import com.space.chatapp.utils.extension.convertTimeToPattern
-import com.space.chatapp.utils.extension.setImageTint
-import com.space.chatapp.utils.extension.setTint
+import com.space.chatapp.utils.extension.viewBinding
 
-class ChatRecyclerAdapter(private val sender: ChatUser) :
-    ListAdapter<MessageModel, ChatRecyclerAdapter.ChatViewHolder>(DiffCallback()) {
+
+class ChatRecyclerAdapter(private val listener: AdapterListener) :
+    ListAdapter<Message, ChatRecyclerAdapter.ChatViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
-        return ChatViewHolder(
-            SendMessageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        )
+        return ChatViewHolder(parent.viewBinding(ChatMessageViewBinding::inflate))
     }
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
-        holder.bind(sender, getItem(position))
+        holder.onBind(listener, getItem(position))
     }
 
-    class ChatViewHolder(private val binding: SendMessageBinding) :
+    class ChatViewHolder(
+        private val binding: ChatMessageViewBinding,
+    ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(sender: ChatUser, item: MessageModel) = with(binding) {
-            sendToTextView.text = item.message
-            dateTextViewTo.text = item.time!!.convertTimeToPattern()
-            val color =
-                if (sender.name == item.sender!!.name) SENDER_COLOR else RECEIVER_COLOR
-            rectangleImageView.setImageTint(color)
-            sendToTextView.setTint(color)
-            root.scaleX = if (sender.name == item.sender.name) SCALE_FACTOR else FLIPPED_SCALE_FACTOR
-            sendToTextView.scaleX = root.scaleX
-            dateTextViewTo.scaleX = root.scaleX
+        fun onBind(listener: AdapterListener, item: Message) {
+            with(binding) {
+                sendToTextView.text = item.message
+                val uiStrategy = if (listener.getUserId() == item.sender) {
+                    if (item.isOnline) SentMessageUIStrategy() else SentNoInternetMessageUIStrategy()
+                } else {
+                    ReceivedMessageUIStrategy()
+                }
+                uiStrategy.setUiElements(binding, item)
+            }
         }
     }
-
-    companion object {
-        private const val SCALE_FACTOR = 1f
-        private const val FLIPPED_SCALE_FACTOR = -1f
-        private const val SENDER_COLOR = R.color.purple_light
-        private const val RECEIVER_COLOR = R.color.darker_white
-    }
 }
+

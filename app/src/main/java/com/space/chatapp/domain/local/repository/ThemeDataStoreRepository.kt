@@ -4,7 +4,7 @@ import com.space.chatapp.utils.ChatThemeMode
 
 interface ThemeDataStoreRepository {
     suspend fun putThemeStateValue(
-        dayMode: ChatThemeMode
+        mode: ChatThemeMode
     )
 
     suspend fun getThemeStateValue(): Result<String>

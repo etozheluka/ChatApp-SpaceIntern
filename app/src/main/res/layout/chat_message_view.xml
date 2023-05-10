@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:layout_marginHorizontal="@dimen/dimen_14dp"
+    android:layout_marginTop="@dimen/dimen_12dp"
     android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -11,21 +13,29 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_bubble"
         android:padding="@dimen/dimen_16dp"
-        android:layout_marginHorizontal="@dimen/dimen_18dp"
-        android:layout_marginVertical="@dimen/dimen_16dp"
+        android:layout_marginEnd="@dimen/dimen_3dp"
+        android:layout_marginBottom="@dimen/dimen_3dp"
         android:backgroundTint="@color/purple_light"
         android:maxWidth="@dimen/dimen_300dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@id/rectangleBigBubble"
+        app:layout_constraintEnd_toEndOf="@id/rectangleBigBubble" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/rectangleImageView"
+        android:id="@+id/rectangleSmallBubble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dimen_18dp"
-        android:layout_marginBottom="@dimen/dimen_5dp"
-        android:src="@drawable/rectangle_small_bubbles"
+        android:layout_marginBottom="@dimen/dimen_16dp"
+        android:src="@drawable/small_bubble"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/rectangleBigBubble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/rectangleSmallBubble"
+        app:layout_constraintEnd_toStartOf="@id/rectangleSmallBubble"
+        android:src="@drawable/large_bubble"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -34,8 +44,6 @@
         style="@style/date_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dimen_6dp"
-        android:layout_marginBottom="@dimen/dimen_5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/rectangleImageView" />
+        app:layout_constraintEnd_toStartOf="@+id/rectangleBigBubble"
+        app:layout_constraintTop_toBottomOf="@+id/sendToTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

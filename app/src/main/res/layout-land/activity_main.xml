@@ -24,8 +24,8 @@
             android:background="@drawable/day_night_switch" />
     </androidx.appcompat.widget.Toolbar>
 
-    <FrameLayout
-        android:id="@+id/topFragment"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerFirst"
         android:layout_width="@dimen/dimen_0dp"
         android:layout_height="@dimen/dimen_0dp"
         android:layout_weight="1"
@@ -44,8 +44,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/bottomFragment"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerSecond"
         android:layout_width="@dimen/dimen_0dp"
         android:layout_height="@dimen/dimen_0dp"
         android:layout_weight="1"
