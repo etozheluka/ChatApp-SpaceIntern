@@ -1,22 +1,21 @@
 package com.space.chatapp.presentation.chat_screen.ui
 
+import com.space.chatapp.R
 import com.space.chatapp.databinding.FragmentChatBinding
-import com.space.chatapp.domain.model.MessageModel
 import com.space.chatapp.presentation.base.BaseFragment
-import com.space.chatapp.presentation.base.Inflate
 import com.space.chatapp.presentation.chat_screen.ui.adapter.ChatRecyclerAdapter
 import com.space.chatapp.presentation.chat_screen.viewmodel.ChatViewModel
 import com.space.chatapp.utils.extension.isNetworkAvailable
 import com.space.chatapp.utils.extension.lifecycleScope
+import com.space.chatapp.utils.extension.viewBinding
 import kotlin.reflect.KClass
 
-class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
+class ChatFragment : BaseFragment<ChatViewModel>() {
 
-    override fun inflate(): Inflate<FragmentChatBinding> {
-        return FragmentChatBinding::inflate
-    }
+    override val layout: Int
+        get() = R.layout.fragment_chat
 
-    override fun userId(): String = tag.toString()
+    private val binding by viewBinding(FragmentChatBinding::bind)
 
     override val viewModelClass: KClass<ChatViewModel>
         get() = ChatViewModel::class
@@ -24,6 +23,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
     private val adapter by lazy {
         ChatRecyclerAdapter(listener)
     }
+    override fun userId(): String = tag.toString()
 
     override fun onBindViewModel(viewModel: ChatViewModel) {
         with(viewModel) {
@@ -37,14 +37,10 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
 
     private fun saveMessageModel(viewModel: ChatViewModel) {
         viewModel.sendMessage(
-            binding.inputEditText.text.toString(), tag.toString(), requireContext().isNetworkAvailable()
+            binding.inputEditText.text.toString(),
+            tag.toString(),
+            requireContext().isNetworkAvailable()
         )
-    }
-
-    private fun filterMessages(messages: List<MessageModel>): List<MessageModel> {
-        return messages.filter {
-            it.sender == userId() || it.isOnline
-        }
     }
 
     private fun initRecycler(viewModel: ChatViewModel) {
@@ -55,7 +51,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
     private fun showMessages(viewModel: ChatViewModel) {
         lifecycleScope {
             viewModel.showMessages().collect {
-                adapter.submitList(filterMessages(it))
+                adapter.submitList(viewModel.filterMessages(it, userId()))
             }
         }
     }

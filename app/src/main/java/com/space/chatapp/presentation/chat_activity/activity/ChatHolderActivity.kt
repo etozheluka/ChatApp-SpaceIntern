@@ -7,23 +7,20 @@ import com.space.chatapp.databinding.ActivityMainBinding
 import com.space.chatapp.presentation.chat_activity.viewmodel.ChatHolderViewModel
 import com.space.chatapp.presentation.chat_screen.ui.ChatFragment
 import com.space.chatapp.utils.ChatThemeMode
-import com.space.chatapp.utils.extension.getDrawable
-import com.space.chatapp.utils.extension.launchWithLifecycle
-import com.space.chatapp.utils.extension.setFragmentToContainer
+import com.space.chatapp.utils.extension.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChatHolderActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
-
+    private val binding by viewBinding(ActivityMainBinding::inflate)
     private val viewModel by viewModel<ChatHolderViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         hideNavBar()
-        initFragments()
+        if (savedInstanceState == null){
+            initFragments()
+        }
         observeThemeMode()
         checkPreferencesStatus()
     }
@@ -57,8 +54,12 @@ class ChatHolderActivity : AppCompatActivity() {
 
     private fun initFragments() {
         with(binding) {
-            setFragmentToContainer(fragmentContainerFirst, ChatFragment())
-            setFragmentToContainer(fragmentContainerSecond, ChatFragment())
+            val fragmentContainerIds = listOf(
+                fragmentContainerFirst,
+                fragmentContainerSecond)
+            fragmentContainerIds.forEachIndexed { index, fragmentContainer ->
+                setFragmentToContainer(fragmentContainer, ChatFragment(), "fragment_${index.inc()}")
+            }
         }
     }
 }

@@ -2,8 +2,8 @@ package com.space.chatapp.presentation.chat_activity.viewmodel
 
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModel
-import com.space.chatapp.domain.use_case.theme.get.GetThemeStateUseCase
-import com.space.chatapp.domain.use_case.theme.save.SaveThemeStateUseCase
+import com.space.chatapp.domain.usecase.theme.get.GetThemeStateUseCase
+import com.space.chatapp.domain.usecase.theme.save.SaveThemeStateUseCase
 import com.space.chatapp.utils.ChatThemeMode
 import com.space.chatapp.utils.extension.viewModelScope
 import com.space.chatapp.utils.toAppCompatMode
