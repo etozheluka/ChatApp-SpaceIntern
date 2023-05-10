@@ -44,6 +44,7 @@
         style="@style/date_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_5dp"
         app:layout_constraintEnd_toStartOf="@+id/rectangleBigBubble"
         app:layout_constraintTop_toBottomOf="@+id/sendToTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
