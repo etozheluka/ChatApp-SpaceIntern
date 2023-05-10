@@ -19,6 +19,10 @@ open class BaseChatFragment : BaseFragment<ChatViewModel>() {
 
     private val binding by viewBinding(FragmentChatBinding::bind)
 
+    private val adapter by lazy {
+        ChatRecyclerAdapter(listener)
+    }
+
     override val layout: Int
         get() = R.layout.fragment_chat
 
@@ -26,8 +30,7 @@ open class BaseChatFragment : BaseFragment<ChatViewModel>() {
     override val viewModelClass: KClass<ChatViewModel>
         get() = ChatViewModel::class
 
-    override fun userId(): String = userId()
-
+    protected open fun userId(): String = userId()
 
     override fun onBindViewModel(viewModel: ChatViewModel) {
         with(viewModel) {
@@ -59,9 +62,4 @@ open class BaseChatFragment : BaseFragment<ChatViewModel>() {
             }
         }
     }
-
-    private val adapter by lazy {
-        ChatRecyclerAdapter(listener)
-    }
-
 }
