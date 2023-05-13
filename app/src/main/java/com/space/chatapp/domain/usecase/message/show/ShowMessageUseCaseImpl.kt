@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 class ShowMessageUseCaseImpl(private val repository: ChatMessageRepository) : ShowMessageUseCase {
 
-    override operator fun invoke(): Flow<List<MessageModel>> {
-        return repository.getAllMessages()
+    override fun invoke(userId: String): Flow<List<MessageModel>> {
+        return repository.getAllMessages(userId)
     }
 }

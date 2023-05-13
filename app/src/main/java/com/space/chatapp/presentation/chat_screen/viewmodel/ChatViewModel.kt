@@ -4,28 +4,25 @@ import androidx.lifecycle.ViewModel
 import com.space.chatapp.domain.usecase.message.send.SendMessageUseCase
 import com.space.chatapp.domain.usecase.message.show.ShowMessageUseCase
 import com.space.chatapp.presentation.model.Message
+import com.space.chatapp.presentation.model.mapper.MessageDomainUIMapper
+import com.space.chatapp.presentation.model.mapper.MessageUIDomainMapper
 import com.space.chatapp.utils.extension.convertTimeToPattern
 import com.space.chatapp.utils.extension.getTimeInMills
 import com.space.chatapp.utils.extension.viewModelScope
-import com.space.chatapp.utils.mapper.toDomainModel
-import com.space.chatapp.utils.mapper.toPresentationModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class ChatViewModel(
     private val sendMessageUseCase: SendMessageUseCase,
     private val showMessageUseCase: ShowMessageUseCase,
+    private val uiDomainMapper: MessageUIDomainMapper,
+    private val domainUiMapper: MessageDomainUIMapper
 ) : ViewModel() {
 
-    fun filterMessages(messages: List<Message>,userId:String): List<Message> {
-        return messages.filter {
-            it.sender == userId || it.isOnline
-        }
-    }
 
-    fun showMessages(): Flow<List<Message>> = showMessageUseCase.invoke()
+    fun showMessages(userId: String): Flow<List<Message>> = showMessageUseCase.invoke(userId)
         .map { messageModels ->
-            messageModels.map { it.toPresentationModel() }
+            messageModels.map { domainUiMapper(it) }
         }
 
 
@@ -38,7 +35,7 @@ class ChatViewModel(
                     time = getTimeInMills().convertTimeToPattern(),
                     isOnline = isOnline
                 )
-                sendMessageUseCase.invoke(message.toDomainModel())
+                sendMessageUseCase.invoke(uiDomainMapper(message))
             }
         }
     }

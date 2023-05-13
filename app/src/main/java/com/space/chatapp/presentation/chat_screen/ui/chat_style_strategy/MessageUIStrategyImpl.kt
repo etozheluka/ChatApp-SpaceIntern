@@ -8,7 +8,7 @@ import com.space.chatapp.utils.extension.setImageTint
 import com.space.chatapp.utils.extension.setTextColorCompat
 import com.space.chatapp.utils.extension.setTint
 
-private fun setCommonUiElements(
+private fun setBubbleColor(
     binding: ChatMessageViewBinding,
     item: Message,
     color: Int
@@ -20,19 +20,13 @@ private fun setCommonUiElements(
         sendToTextView.setTint(color)
         rectangleSmallBubble.setImageTint(color)
     }
-
 }
 
 class SentMessageUIStrategy : MessageUIStrategy {
     override fun setUiElements(binding: ChatMessageViewBinding, item: Message) {
+        setBubbleColor(binding, item, R.color.purple_light)
         with(binding) {
-            with(R.color.purple_light) {
-                setCommonUiElements(
-                    binding = binding,
-                    item = item,
-                    color = this
-                )
-            }
+            sendToTextView.setTextColorCompat(R.color.eerie_black)
             root.layoutDirection = View.LAYOUT_DIRECTION_LTR
         }
     }
@@ -40,15 +34,10 @@ class SentMessageUIStrategy : MessageUIStrategy {
 
 class SentNoInternetMessageUIStrategy : MessageUIStrategy {
     override fun setUiElements(binding: ChatMessageViewBinding, item: Message) {
+        setBubbleColor(binding, item, R.color.purple_light)
         with(binding) {
-            with(R.color.purple_light) {
-                setCommonUiElements(
-                    binding = binding,
-                    item = item,
-                    color = this
-                )
-            }
             dateTextViewTo.text = dateTextViewTo.context.getString(R.string.not_delivered)
+            sendToTextView.setTextColorCompat(R.color.fade)
             dateTextViewTo.setTextColorCompat(R.color.red_error)
             root.layoutDirection = View.LAYOUT_DIRECTION_LTR
         }
@@ -57,10 +46,9 @@ class SentNoInternetMessageUIStrategy : MessageUIStrategy {
 
 class ReceivedMessageUIStrategy : MessageUIStrategy {
     override fun setUiElements(binding: ChatMessageViewBinding, item: Message) {
+        setBubbleColor(binding, item, R.color.darker_white)
         with(binding) {
-            with(R.color.darker_white) {
-                setCommonUiElements(binding, item, this)
-            }
+            sendToTextView.setTextColorCompat(R.color.eerie_black)
             root.layoutDirection = View.LAYOUT_DIRECTION_RTL
         }
     }

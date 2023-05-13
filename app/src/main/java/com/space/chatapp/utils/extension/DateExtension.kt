@@ -4,12 +4,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 fun Long.convertTimeToPattern(): String {
+    val georgianLocale = Locale("ka", "GE")
+    val dateFormat = SimpleDateFormat("MMM d, HH:mm", georgianLocale)
     val calendar = Calendar.getInstance()
-    val dayMonthFormat = SimpleDateFormat("dd/MM, HH:mm", Locale.getDefault())
-    return dayMonthFormat.format(calendar.time)
+    calendar.timeInMillis = this
+    return dateFormat.format(calendar.time)
 }
-
-fun convertTimeToLong(time:String): Long {
-    val dayMonthFormat = SimpleDateFormat("dd/MM, HH:mm", Locale.getDefault())
-    return dayMonthFormat.parse(time)?.time ?: 0
+fun convertTimeToLong(): Long{
+    return System.currentTimeMillis()
 }
