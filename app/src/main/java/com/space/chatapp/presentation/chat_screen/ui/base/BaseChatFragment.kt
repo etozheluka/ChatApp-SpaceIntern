@@ -59,8 +59,8 @@ open class BaseChatFragment : BaseFragment<ChatViewModel>() {
 
     private fun showMessages(viewModel: ChatViewModel) {
         lifecycleScope {
-            viewModel.showMessages().collect {
-                adapter.submitList(viewModel.filterMessages(it, userId()))
+            viewModel.showMessages(userId()).collect {
+                adapter.submitList(it)
             }
         }
     }

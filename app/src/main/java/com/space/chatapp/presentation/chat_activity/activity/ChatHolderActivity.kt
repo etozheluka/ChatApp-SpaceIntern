@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.space.chatapp.R
 import com.space.chatapp.databinding.ActivityMainBinding
 import com.space.chatapp.presentation.chat_activity.viewmodel.ChatHolderViewModel
-import com.space.chatapp.presentation.chat_screen.ui.fragment.ChatFragment1
-import com.space.chatapp.presentation.chat_screen.ui.fragment.ChatFragment2
+import com.space.chatapp.presentation.chat_screen.ui.fragment.ChatFragmentFirst
+import com.space.chatapp.presentation.chat_screen.ui.fragment.ChatFragmentSecond
 import com.space.chatapp.utils.ChatThemeMode
 import com.space.chatapp.utils.extension.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -59,7 +59,7 @@ class ChatHolderActivity : AppCompatActivity() {
     }
 
     private fun initFragments() {
-        setFragmentToContainer(binding.fragmentContainerFirst, ChatFragment1())
-        setFragmentToContainer(binding.fragmentContainerSecond, ChatFragment2())
+        setFragmentToContainer(binding.fragmentContainerFirst, ChatFragmentFirst())
+        setFragmentToContainer(binding.fragmentContainerSecond, ChatFragmentSecond())
     }
 }
