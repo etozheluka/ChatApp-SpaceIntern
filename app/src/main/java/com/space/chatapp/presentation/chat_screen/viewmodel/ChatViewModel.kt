@@ -29,11 +29,11 @@ class ChatViewModel(
         }
 
 
-    fun sendMessage(editTextInput: String, tag: String,isOnline:Boolean) {
+    fun sendMessage(editTextInput: String, sender: String,isOnline:Boolean) {
         if (editTextInput.isNotEmpty()) {
             viewModelScope {
                 val message = Message(
-                    sender = tag,
+                    sender = sender,
                     message = editTextInput,
                     time = getTimeInMills().convertTimeToPattern(),
                     isOnline = isOnline
