@@ -22,8 +22,14 @@ class ChatHolderViewModel(
     private val _state = MutableSharedFlow<ChatThemeMode>()
     val state = _state.asSharedFlow()
 
+    /**
+     * This suspend function is used to get the theme state value from data store
+     */
     private suspend fun getThemeStateValue(): Result<String> = getThemeStateUseCase.invoke()
 
+    /**
+     * This suspend function is used to save the theme state value to data store
+     */
     private fun saveThemeStateValue(themeMode: ChatThemeMode) {
         viewModelScope {
             saveThemeStateUseCase.invoke(themeMode)
@@ -31,6 +37,12 @@ class ChatHolderViewModel(
         }
     }
 
+    /**
+     * This function is used to update the theme state
+     * If the theme state is DAY_MODE then it will update it to NIGHT_MODE
+     * If the theme state is NIGHT_MODE then it will update it to DAY_MODE
+     * And save the updated theme state to data store
+     */
     fun themeUpdate() {
         viewModelScope {
             when (getThemeStateValue().getOrNull()) {
@@ -46,6 +58,13 @@ class ChatHolderViewModel(
         }
     }
 
+    /**
+     * This function is used to check the theme state value from data store
+     * And update the theme state
+     * If the theme state is DAY_MODE then it will update it to DAY_MODE
+     * If the theme state is NIGHT_MODE then it will update it to NIGHT_MODE
+     * And save the updated theme state to data store
+     */
     fun checkPreferencesStatus() {
         viewModelScope {
             when (getThemeStateValue().getOrNull()) {

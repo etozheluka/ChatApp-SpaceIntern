@@ -23,13 +23,26 @@ class ChatViewModel(
     private val domainUiMapper: MessageDomainUIMapper
 ) : ViewModel() {
 
-
+    /**
+     * A function that takes a user ID as input and returns a flow of a list of messages.
+     * This function uses the showMessageUseCase to fetch message models and then maps them
+     * using the domainUiMapper to convert them into UI-specific models.
+     * @param userId The ID of the user whose messages are being fetched
+     * @return A flow of a list of messages
+     */
     fun showMessages(userId: String): Flow<List<Message>> = showMessageUseCase.invoke(userId)
         .map { messageModels ->
             messageModels.map { domainUiMapper(it) }
         }
 
-
+    /**
+     * A function that takes a message, sender, and online status as input and sends the message.
+     * This function uses the sendMessageUseCase to send the message.
+     * @param editTextInput The message to be sent
+     * @param sender The ID of the user who is sending the message
+     * @param isOnline The online status of the user who is sending the message
+     * @return A flow of a list of messages
+     */
     fun sendMessage(editTextInput: String, sender: String,isOnline:Boolean) {
         if (editTextInput.isNotEmpty()) {
             viewModelScope {
