@@ -12,5 +12,5 @@ fun AppCompatActivity.setFragmentToContainer(container: Int, fragment: Fragment)
         }else{
             add(container, fragment)
         }
-    }.commitNow()
+    }.commit()
 }

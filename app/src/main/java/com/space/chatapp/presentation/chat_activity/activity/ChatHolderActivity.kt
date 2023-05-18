@@ -25,13 +25,11 @@ class ChatHolderActivity : AppCompatActivity() {
         setContentView(binding.root)
         hideNavBar()
         if (savedInstanceState != null) {
-
             val savedContainerIds = savedInstanceState.getIntegerArrayList(CONTAINERS_STATE_KEY)
             if (savedContainerIds != null) {
                 containers.addAll(savedContainerIds)
             }
         }
-
         initFragment(5)
         observeThemeMode()
         checkPreferencesStatus()
@@ -116,7 +114,6 @@ class ChatHolderActivity : AppCompatActivity() {
         divider.setBackgroundColorRes(R.color.dark_yellow200)
         return divider
     }
-
     /**
      * Create layout params for fragment container
      */
@@ -125,7 +122,6 @@ class ChatHolderActivity : AppCompatActivity() {
         context: Context
     ): LinearLayout.LayoutParams {
         val orientation = context.resources.configuration.orientation
-
         val layoutParams: LinearLayout.LayoutParams =
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 // Landscape mode parameters
@@ -142,16 +138,13 @@ class ChatHolderActivity : AppCompatActivity() {
                     1f / totalWeight
                 )
             }
-
         return layoutParams
     }
-
     /**
      * Create divider layout params
      */
     private fun createDividerLayoutParams(context: Context): LinearLayout.LayoutParams {
         val orientation = context.resources.configuration.orientation
-
         val layoutParams: LinearLayout.LayoutParams =
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 // Landscape mode parameters
@@ -166,10 +159,8 @@ class ChatHolderActivity : AppCompatActivity() {
                     6
                 )
             }
-
         return layoutParams
     }
-
     /**
      * Create bundle for fragment
      */
@@ -178,7 +169,6 @@ class ChatHolderActivity : AppCompatActivity() {
         bundle.putString(USER_ID, "fragment_${index + 1}")
         return bundle
     }
-
     companion object {
         private const val CONTAINERS_STATE_KEY = "containers_state_key"
         private const val USER_ID = "userId"
