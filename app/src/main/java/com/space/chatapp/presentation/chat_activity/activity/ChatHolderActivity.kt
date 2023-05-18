@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.space.chatapp.R
 import com.space.chatapp.databinding.ActivityMainBinding
+import com.space.chatapp.presentation.chat_activity.adapter.ViewPagerFragmentAdapter
 import com.space.chatapp.presentation.chat_activity.viewmodel.ChatHolderViewModel
 import com.space.chatapp.presentation.chat_screen.ui.fragment.ChatFragment
 import com.space.chatapp.utils.ChatThemeMode
@@ -87,8 +88,6 @@ class ChatHolderActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val CONTAINERS_STATE_KEY = "containers_state_key"
         private const val USER_ID = "userId"
-
     }
 }

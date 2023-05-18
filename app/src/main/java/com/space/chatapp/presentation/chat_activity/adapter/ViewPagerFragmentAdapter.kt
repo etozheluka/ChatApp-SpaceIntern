@@ -1,4 +1,4 @@
-package com.space.chatapp.presentation.chat_activity.activity
+package com.space.chatapp.presentation.chat_activity.adapter
 
 
 import androidx.fragment.app.Fragment
