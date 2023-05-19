@@ -30,7 +30,7 @@ class ChatHolderActivity : AppCompatActivity() {
                 containers.addAll(savedContainerIds)
             }
         }
-        initFragment(5)
+        initFragment(2)
         observeThemeMode()
         checkPreferencesStatus()
     }
@@ -114,6 +114,7 @@ class ChatHolderActivity : AppCompatActivity() {
         divider.setBackgroundColorRes(R.color.dark_yellow200)
         return divider
     }
+
     /**
      * Create layout params for fragment container
      */
@@ -140,6 +141,7 @@ class ChatHolderActivity : AppCompatActivity() {
             }
         return layoutParams
     }
+
     /**
      * Create divider layout params
      */
@@ -161,6 +163,7 @@ class ChatHolderActivity : AppCompatActivity() {
             }
         return layoutParams
     }
+
     /**
      * Create bundle for fragment
      */
@@ -169,9 +172,9 @@ class ChatHolderActivity : AppCompatActivity() {
         bundle.putString(USER_ID, "fragment_${index + 1}")
         return bundle
     }
+
     companion object {
         private const val CONTAINERS_STATE_KEY = "containers_state_key"
-        private const val USER_ID = "userId"
-
+        const val USER_ID = "userId"
     }
 }

@@ -27,7 +27,6 @@ class ChatViewModel(
             messageModels.map { domainUiMapper(it) }
         }
 
-
     fun sendMessage(editTextInput: String, sender: String,isOnline:Boolean) {
         if (editTextInput.isNotEmpty()) {
             viewModelScope(IO) {
