@@ -6,11 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import androidx.viewbinding.ViewBinding
-import com.space.chatapp.presentation.chat_screen.ui.adapter.AdapterListener
 import org.koin.androidx.viewmodel.ext.android.viewModelForClass
 import kotlin.reflect.KClass
 
+/** Base class for all fragments */
 
 abstract class BaseFragment<VM : ViewModel> : Fragment() {
 

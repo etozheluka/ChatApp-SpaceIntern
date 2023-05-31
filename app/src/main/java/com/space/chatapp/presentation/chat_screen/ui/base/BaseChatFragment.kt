@@ -11,6 +11,8 @@ import com.space.chatapp.utils.extension.lifecycleScope
 import com.space.chatapp.utils.extension.viewBinding
 import kotlin.reflect.KClass
 
+/* Base class for all chat fragments */
+
 open class BaseChatFragment : BaseFragment<ChatViewModel>() {
 
     private val listener = object : AdapterListener {

@@ -11,6 +11,7 @@ import com.space.chatapp.presentation.model.Message
 import com.space.chatapp.utils.DiffCallback
 import com.space.chatapp.utils.extension.viewBinding
 
+/** Adapter for the chat recycler view which shows the messages */
 
 class ChatRecyclerAdapter(private val listener: AdapterListener) :
     ListAdapter<Message, ChatRecyclerAdapter.ChatViewHolder>(DiffCallback()) {

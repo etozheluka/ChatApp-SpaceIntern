@@ -6,7 +6,9 @@ import com.space.chatapp.data.mapper.MessageEntityDomainMapper
 import com.space.chatapp.domain.local.repository.ChatMessageRepository
 import com.space.chatapp.domain.model.MessageModel
 import kotlinx.coroutines.flow.map
-
+/**
+ * This class is used to handle the database operations
+ */
 class ChatMessageRepositoryImpl(
     private val dao: ChatDao,
     private val domainEntityMapper: MessageDomainEntityMapper,

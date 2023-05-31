@@ -7,6 +7,9 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import com.space.chatapp.utils.ChatThemeMode
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+/**
+ * This class is used to handle the data store operations
+ */
 
 class ThemeDataStoreManager(private val dataStore: DataStore<Preferences>) {
 
