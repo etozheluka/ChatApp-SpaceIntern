@@ -11,6 +11,8 @@ import com.space.chatapp.utils.extension.lifecycleScope
 import com.space.chatapp.utils.extension.viewBinding
 import kotlin.reflect.KClass
 
+/* Base class for all chat fragments */
+
 open class BaseChatFragment : BaseFragment<ChatViewModel>() {
 
     private val listener = object : AdapterListener {
@@ -30,19 +32,18 @@ open class BaseChatFragment : BaseFragment<ChatViewModel>() {
     override val viewModelClass: KClass<ChatViewModel>
         get() = ChatViewModel::class
 
+
     protected open fun userId(): String = userId()
 
-    override fun onBindViewModel(viewModel: ChatViewModel) {
-        with(viewModel) {
-            initRecycler(this)
-            binding.sendBtn.setOnClickListener {
-                saveMessageModel(this)
-                binding.inputEditText.text?.clear()
-            }
+    override fun onBindViewModel() {
+        initRecycler()
+        binding.sendBtn.setOnClickListener {
+            saveMessageModel()
+            binding.inputEditText.text?.clear()
         }
     }
 
-    private fun saveMessageModel(viewModel: ChatViewModel) {
+    private fun saveMessageModel() {
         viewModel.sendMessage(
             binding.inputEditText.text.toString(),
             userId(),
@@ -50,15 +51,15 @@ open class BaseChatFragment : BaseFragment<ChatViewModel>() {
         )
     }
 
-    private fun initRecycler(viewModel: ChatViewModel) {
+    private fun initRecycler() {
         binding.chatRecycler.adapter = adapter
-        showMessages(viewModel)
+        showMessages()
     }
 
-    private fun showMessages(viewModel: ChatViewModel) {
+    private fun showMessages() {
         lifecycleScope {
-            viewModel.showMessages().collect {
-                adapter.submitList(viewModel.filterMessages(it, userId()))
+            viewModel.showMessages(userId()).collect {
+                adapter.submitList(it)
             }
         }
     }
