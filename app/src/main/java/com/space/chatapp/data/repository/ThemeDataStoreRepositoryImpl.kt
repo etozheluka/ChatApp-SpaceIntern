@@ -4,7 +4,9 @@ import com.space.chatapp.data.local.data_store.ThemeDataStoreManager
 import com.space.chatapp.domain.local.repository.ThemeDataStoreRepository
 import com.space.chatapp.utils.ChatThemeMode
 import kotlinx.coroutines.flow.firstOrNull
-
+/**
+ * This class is used to handle the data store operations
+ */
 class ThemeDataStoreRepositoryImpl(private val dataStorePreferences: ThemeDataStoreManager) :
     ThemeDataStoreRepository {
 

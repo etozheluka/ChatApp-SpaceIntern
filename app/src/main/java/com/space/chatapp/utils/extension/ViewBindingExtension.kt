@@ -12,6 +12,10 @@ import androidx.viewbinding.ViewBinding
 import kotlin.reflect.KProperty
 import kotlin.properties.ReadOnlyProperty
 
+/**
+ * ViewBinding Extension
+ * */
+
 inline fun <VB : ViewBinding> AppCompatActivity.viewBinding(crossinline factory: (LayoutInflater) -> VB) =
     lazy(LazyThreadSafetyMode.NONE) {
         factory(layoutInflater)
