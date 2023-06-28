@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 fun LifecycleOwner.launchWithLifecycle(
     block: suspend CoroutineScope.() -> Unit
@@ -15,9 +17,10 @@ fun LifecycleOwner.launchWithLifecycle(
 }
 
 fun ViewModel.viewModelScope(
+    coroutineContext: CoroutineContext = Dispatchers.Main,
     block: suspend CoroutineScope.() -> Unit
 ) {
-    viewModelScope.launch { block() }
+    viewModelScope.launch(coroutineContext) { block() }
 }
 
 fun Fragment.lifecycleScope(block: suspend CoroutineScope.() -> Unit) {

@@ -9,6 +9,8 @@ import com.space.chatapp.presentation.model.mapper.MessageUIDomainMapper
 import com.space.chatapp.utils.extension.convertTimeToPattern
 import com.space.chatapp.utils.extension.getTimeInMills
 import com.space.chatapp.utils.extension.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -45,7 +47,7 @@ class ChatViewModel(
      */
     fun sendMessage(editTextInput: String, sender: String,isOnline:Boolean) {
         if (editTextInput.isNotEmpty()) {
-            viewModelScope {
+            viewModelScope(IO) {
                 val message = Message(
                     sender = sender,
                     message = editTextInput,

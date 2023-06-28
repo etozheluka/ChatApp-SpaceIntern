@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layoutView"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragmentContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/background"
-    android:orientation="vertical"
-    android:weightSum="2">
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -19,21 +19,4 @@
             android:layout_marginEnd="@dimen/dimen_20dp"
             android:background="@drawable/day_night_switch" />
     </androidx.appcompat.widget.Toolbar>
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerFirst"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_0dp"
-        android:layout_weight="1" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_6dp"
-        android:background="@drawable/divider_line" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerSecond"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_0dp"
-        android:layout_weight="1" />
 </LinearLayout>
